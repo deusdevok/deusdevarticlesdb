@@ -1,3 +1,15 @@
+********title
+1 - Introduction to Python: Installation & Setup
+********
+
+********slug
+introduction-to-python-installation-setup
+********
+
+********featuredimage
+https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse1/pythoncourse1featured.jpg
+********
+
 The first step to start programming using Python is to make an installation in our computer. There are websites that offer different ways to work with Python without the need of having anything installed, but in this article we are going to make Python available in our personal computers.
 
 Installing Python is very straightforward, and it takes just a couple of minutes in most cases. Once you have Python installed in your machine you can start using the most basic although powerful features of this great programming language.
