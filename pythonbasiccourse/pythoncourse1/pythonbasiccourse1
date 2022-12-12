@@ -9,6 +9,11 @@ In this article I'm going through one of the various methods available to instal
 The first step is to find the official Python website and look for the installer.
 
 1. Go to the Python official website: https://www.python.org/. The Python website looks like the following image.
+
+ ![python website](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse1/pythonwebsite.jpg)
+
+ *__Figure 1__. The Python official website.*
+
 2. Within this main website, find the Downloads section and click on it. If you are on Windows, the website will show the download version for that operating system. Each operating system has a different download source. You should find the one for your current operating system (Windows, Linux, macOS, etc).
 
   If you are a sufficient curious person, you may have already scrolled down the page and noticed that there are different Python versions you can download and install. You can install any Python version you want, and in fact you can have more than one Python version installed in your computer. This is outside the scope of this tutorial. Instead, we will focus on working with the latest stable Python release.
@@ -18,11 +23,24 @@ The first step is to find the official Python website and look for the installer
 
 1. Open the exe file. There is a chance that a pop up window will show up asking for permissions. You will see a window like the following (the version of the installable will be different than the one in the image):
 
+ ![python installation screen](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse1/pythoninstall1.jpg)
+
+ *__Figure 2__. The first Python installation screen.*
+
   * The Customize installation section gives a set of options to choose, like including pip in the installation (this is included by default).
   * I recommend you mark the option that says Add Python to PATH. I'm not going to discuss the implications of doing this or not, but I encourage you to investigate on this to know at least what this is. For more information about PATH you can read the discussion on this link: https://discuss.python.org/t/could-we-add-python-to-system-path-by-default/3067
   
 2. Click install now. Wait for the files to finish installing.
+
+ ![python installation screen](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse1/pythoninstall2.jpg)
+
+ *__Figure 3__. Python installation in progress.*
+
 3. Once the installation finishes, this window will show. As you can see there are a couple of useful links like official tutorials and documentation.
+
+ ![python installation screen](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse1/pythoninstall3.jpg)
+
+ *__Figure 4__. Python installation finishing.*
 
 # Step 3: Check the Python installation
 
@@ -32,6 +50,10 @@ Python is now installed on your computer, but you may want to make sure that eve
 2. Write python --version (double hyphen) and hit Enter. Alternatively you can write python -V (with a single hyphen). This command is equivalent. You can also write py --version or py -V.
 
   In any case, you should see the current Python version as the output:
+  
+  ![windows powershell with python code](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse1/powershellwindow.jpg)
+
+ *__Figure 5__. Python installation finishing.*
   
   As you can see the terminal prints the current Python version installed on your machine. This means everything went good and you are ready to use Python to write your programs.
   
