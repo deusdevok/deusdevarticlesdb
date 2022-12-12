@@ -14,7 +14,7 @@ Have you ever wondered how the value of $\pi$ can be obtained? There are several
 
 The basic idea is to randomly generate a set of points on a square, and count how many of them lies inside the circle which is inscribed in the square, and how many of them lies outside of it.
 
-![a blue circle inscribed inside a red square](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/estimatepimontecarlo/piestimation1.jpeg)
+![a blue circle inscribed inside a red square](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/blog/estimatepimontecarlo/piestimation1.jpeg)
 
 *__Figure 1__. Calculating Pi using a Monte Carlo simulation.*
 
@@ -51,7 +51,7 @@ One last thing to clarify on this equation, is the fact that the equal sign is o
 
 Let's start with the relation (division) between the area of the circle and the area of the square. Assume you have something like Figure 2, where a square of side 2R has a circle of radius R inscribed inside of it.
 
-![A green circle of radius R inscribed inside a square of side 2R](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/a9ac5c44453519b4e9ff216727b0ab9e89083e98/estimatepimontecarlo/piestimation2.svg)
+![A green circle of radius R inscribed inside a square of side 2R](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/dc1ad485c47fd765f1656e478095e16b6e152a78/blog/estimatepimontecarlo/piestimation2.svg)
 
 *__Figure 2__. A circle inscribed inside a square. The circle has radius R while the square has sides of length 2R.*
 
@@ -85,7 +85,7 @@ $$ \pi = 4 \cdot \frac{N\_{in}}{(N\_{in} + N\_{out})} $$
 
 How do you generate a random point in the square? For this you can make use of the random.uniform function. This function generates a random float value between two numbers a and b. For this example you use `random.uniform(-1, 1)`, because the square lies between the values -1 and 1 (x and y coordinates). You have to use this function twice: one for the x coordinate and another for the y coordinate. This way you have a tuple (x, y) randomly generated on the square.
 
-![A green circle of radius R inscribed inside a square of side 2R with a point with coordinates x and y](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/a9ac5c44453519b4e9ff216727b0ab9e89083e98/estimatepimontecarlo/piestimation3.svg)
+![A green circle of radius R inscribed inside a square of side 2R with a point with coordinates x and y](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/dc1ad485c47fd765f1656e478095e16b6e152a78/blog/estimatepimontecarlo/piestimation3.svg)
 
 *__Figure 3__. A tuple with coordinates (x, y) randomly generated.*
 
@@ -151,7 +151,7 @@ If you run the simulation with the same number of points that I used, there is a
 
 Finally, the Figure I obtained looks like the following:
 
-![a blue circle inscribed inside a red square](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/estimatepimontecarlo/piestimation1.jpeg)
+![a blue circle inscribed inside a red square](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/blog/estimatepimontecarlo/piestimation1.jpeg)
 
 *__Figure 4__. Calculating Pi using a Monte Carlo simulation.*
 
