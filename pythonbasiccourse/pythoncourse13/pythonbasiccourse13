@@ -1,0 +1,72 @@
+********title
+13 - Introduction to Python: Practice Projects
+********
+
+********slug
+introduction-to-python-practice-proyects
+********
+
+********featuredimage
+https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse1/pythoncourse1featured.jpg
+********
+
+This section of the basic Python course is intended for you to practice what you have learned so far. There is a lot you can do with what you already learned, and in this short article you are getting a couple of ideas for practice projects. Let’s get started and have fun!
+
+## Rock, paper, scissors game
+
+This is a two player game where each of them randomly chooses between rock, paper or scissors. In this case you can make a user play against the computer. You can read more about this popular game in the [wikipedia article](https://en.wikipedia.org/wiki/Rock_paper_scissors). The basic rules are:
+
+- Rock beats scissors
+- Paper beats rock
+- Scissors beats paper
+
+The Python program can work like the following after executing the script:
+
+```
+Game number 1
+Rock (R), paper (P) or scissors (S)? (Q to quit): R
+You have chosen Rock, while the computer chose Paper
+You lost
+
+Game number 2
+Rock (R), paper (P) or scissors (S)? (Q to quit): p
+You have chosen Paper, while the computer chose Rock
+You won!
+
+Game number 3
+Rock (R), paper (P) or scissors (S)? (Q to quit): S
+You have chosen Scissors, while the computer chose Rock
+You lost
+
+Game number 4
+Rock (R), paper (P) or scissors (S)? (Q to quit): T
+Incorrect input. Please try again.
+
+Game number 4
+Rock (R), paper (P) or scissors (S)? (Q to quit): r
+You have chosen Rock, while the computer chose Scissors
+You won!
+
+Game number 5
+Rock (R), paper (P) or scissors (S)? (Q to quit): r
+You have chosen Rock, while the computer chose Scissors
+You won!
+
+Game number 6
+Rock (R), paper (P) or scissors (S)? (Q to quit): P
+You have chosen Paper, while the computer chose Scissors
+You lost
+
+Game number 7
+Rock (R), paper (P) or scissors (S)? (Q to quit): q
+Thank you for playing!
+You won 3 out of 6 games (50.00%)
+```
+
+The user plays against the computer one game after another as long as the user doesn’t choose the option to quit, which can be the letter Q. Here is a list of things to consider for the Python script:
+
+1. In order to play games indefinitely until a condition is met (choosing Q to quit) you can make use of a `while` loop. There are a couple of ways to do it, but one popular way to make an infinite loop is to do use `while True`.
+2. The program needs to prompts the player (you) for either rock, paper or scissors. Remember you can use the `input()` function for this.
+3. The computer also needs to choose between rock, paper or scissors. You could make use of the `random` module to randomly choose between the three options, particularly with the `choice()` function.
+4. In each game you need to check who won, or if there was a tie. For this you could make a series of `if-else` and possibly `elif` statements. For example, if the user chose Rock and the computer chose Scissors, then the user won the game.
+5. You could keep a score of the game by using a variable `score`, initially being equal to 0. Each game you win adds up one point to the final score. Remember you can increase a variable with `score += 1`.

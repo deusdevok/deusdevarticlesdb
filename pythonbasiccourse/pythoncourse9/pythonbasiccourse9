@@ -229,7 +229,7 @@ The program starts with `i=0`. When entering the while loop, it checks if the va
 
 You can draw a flowchart diagram similar to those you learned in the conditional statements chapter.
 
-![whileloop1.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/dd739461-46a4-4d4a-841d-17f3ddea264e/whileloop1.jpg)
+![whileloop1.jpg](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse9/whileloop1.jpg)
 
 ### Infinite loops
 
