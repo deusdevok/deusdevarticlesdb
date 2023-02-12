@@ -73,7 +73,7 @@ You can retrieve specific characters of your string by using **index notation**.
 
 The index is an **integer** value indicating the position of the character in the string. Index values start at 0 for the first position, then 1 for the second position, 2 for the third, and so on.
 
-![positiveindex.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3de3794c-868a-4434-b28e-34edef57ced8/positiveindex.jpg)
+![positiveindex.jpg](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse5/positiveindex.jpg)
 
 Note that the index of the last element is not equal to the number of characters in the string, but one less. This is because the index starts with 0 instead of 1. In this example the number of characters (the length of the string) is 12, while the index of the last character is 11.
 
@@ -95,7 +95,7 @@ If you want to retrieve the fifth element, this corresponds to the index 4:
 
 Index can also be negative. For the case of negative indexes you have to think in reverse: -1 is the last character in the string, -2 is the previous to last, etc.
 
-![negativeindex.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1d20cafe-4444-4dac-a9ee-8176f754f7ed/negativeindex.jpg)
+![negativeindex.jpg](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse5/negativeindex.jpg)
 
 In this case the first character of the string can be retrieved with a negative index with a value equal to the length of the string, in this case -12:
 

@@ -93,7 +93,7 @@ You can access different elements of a Python list by using the **index notation
 
 For example, the list `['John', 'Jane', 'Kevin']` has three elements. The first one is at index position 0, the second at index 1, and the third at index 2.
 
-![deusdevFigures.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ae675c00-56db-468b-a9d8-9988c87e9a0a/deusdevFigures.jpg)
+![positive index](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse6/positiveindex.jpg)
 
 Let’s access each element of the list of names using index notation:
 
@@ -109,7 +109,7 @@ Let’s access each element of the list of names using index notation:
 
 Index can be negative. Negative indexes start at -1 for the last element in the list, -2 for the previous to last, and so on.
 
-![deusdevFigures (1).jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b069eaad-100b-4e4e-9c5a-fd19326f6710/deusdevFigures_(1).jpg)
+![negative index](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse6/negativeindex.jpg)
 
 If you try to access an index that is not valid, Python will throw an error:
 
