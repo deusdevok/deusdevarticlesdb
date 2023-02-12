@@ -1,0 +1,35 @@
+********title
+1 - Introduction to Python: Course Outline
+********
+
+********slug
+introduction-to-python-outline
+********
+
+********featuredimage
+https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse1/pythoncourse1featured.jpg
+********
+
+## What is Python?
+
+Python is a great programming language for everyone.
+
+## List of topics
+
+- Introduction
+    - **Installation**
+    - **Terminal**
+    - **Text editors**
+- Data Types
+    - I**ntroduction to data types**
+    - **Working with strings**
+    - **Working with lists**
+    - **Working with dictionaries**
+- Flow control
+    - **Conditional statements:  if, elif, else statements**
+    - **Loops: for and while, break, continue and pass**
+- Functional programming
+    - **Functions**
+    - **Methods**
+    - **Modules**
+- Building your own practice projects
