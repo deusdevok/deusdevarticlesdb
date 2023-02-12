@@ -35,7 +35,7 @@ The first step is to find the official Python website and look for the installer
 
 1. Open the exe file. There is a chance that a pop up window will show up asking for permissions. You will see a window like the following (the version of the installable will be different than the one in the image):
 
- ![python installation screen](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse1/pythoninstall1.jpg)
+ ![python 3.11 installation screen](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse1/python311install.png)
 
  *__Figure 2__. The first Python installation screen.*
 
@@ -44,13 +44,13 @@ The first step is to find the official Python website and look for the installer
   
 2. Click install now. Wait for the files to finish installing.
 
- ![python installation screen](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse1/pythoninstall2.jpg)
+ ![python 3.11 installation screen in progress](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse1/python311installprogress.png)
 
  *__Figure 3__. Python installation in progress.*
 
 3. Once the installation finishes, this window will show. As you can see there are a couple of useful links like official tutorials and documentation.
 
- ![python installation screen](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse1/pythoninstall3.jpg)
+ ![python installation screen success](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse1/python311installsuccess.png)
 
  *__Figure 4__. Python installation finishing.*
 
@@ -63,7 +63,7 @@ Python is now installed on your computer, but you may want to make sure that eve
 
   In any case, you should see the current Python version as the output:
   
-  ![windows powershell with python code](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse1/powershellwindow.jpg)
+  ![windows powershell with python code](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse1/python311installcheckversion.png)
 
  *__Figure 5__. Python installation finishing.*
   
