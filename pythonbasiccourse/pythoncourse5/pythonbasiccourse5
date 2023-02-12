@@ -141,7 +141,7 @@ The rules are:
 
 To retrieve the “World” part of your string, you need to go from index 6 through index 10 (included).
 
-![deusdevFigures.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3d3e8738-d2ff-47a7-b6af-ffed858b6826/deusdevFigures.jpg)
+![string slice notation](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse5/slicenotation.jpg)
 
 So the first index will be 6, and the second index will be 11.
 
@@ -164,7 +164,7 @@ You can leave the start or end parameters empty. If you omit the start it will d
 
 You can also retrieve a substring and skipping certain characters from it. For example, say you want the substring “World” but only the characters that have an even index. In this case they are 6, 8 and 10. The output should be “Wrd”.
 
-![deusdevFigures (1).jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/26774c7f-a856-4c1a-a4d9-87039eb5ac36/deusdevFigures_(1).jpg)
+![string slice notation with step](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse5/slicewithstep.jpg)
 
 There is a third parameter in slice notation which is the `step`. This is also an integer parameter and indicates how many indices to avoid on each pass (defaults to 1).
 
