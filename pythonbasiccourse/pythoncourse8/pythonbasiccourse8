@@ -131,7 +131,7 @@ In this example the body of the `if` statement has three lines. When the boolean
 
 When dealing with simple decisions like the ones you are learning in this article, is a good idea to organize your program and think about its logic before moving on to writing any code. This is a great idea specially when a program is getting too complex and the code is harder to read. A *flowchart* diagram for the last example would look like this:
 
-![deusdevFigures (3).jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/93c56a36-8b57-47d6-ac7f-881d55c5ff1f/deusdevFigures_(3).jpg)
+![flowchart if](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse8/flowdiagramif.jpg)
 
 The **diamond shaped box** contains the *conditional decision*, which will be part of the `if` statement in your program. In this case that is the `raining` boolean variable. 
 
@@ -203,7 +203,7 @@ In this case, only the second message is printed to the screen. The code block b
 
 A flowchart diagram for this example would look like this:
 
-![deusdevFigures (4).jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7be3c314-6180-4bac-8361-3403eb2ad3db/deusdevFigures_(4).jpg)
+![flowchart if else](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse8/flowdiagramifelse.jpg)
 
 The `False` case now has a path with a `print` statement in between, making it show a custom message in between instead of jumping to the end of the script.
 
@@ -213,7 +213,7 @@ So far you have seen simple `if-else` statements, where a block of code is execu
 
 For example, say you are working on a math problem where you have an integer number, and you want to check if that number is even or odd. Only in case the number is even (a multiple of 2), check if the number is equal to 2. Let’s make a diagram to organize the logic before writing any code.
 
-![deusdevFigures (1).jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3c4246e2-e2de-4503-ba63-85d73f761bed/deusdevFigures_(1).jpg)
+![flowchart nested if else](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse8/flowdiagramnestedifelse.jpg)
 
 The first thing the program will do is to check weather the number `n` is even or odd. The diamond shaped box indicates that this is part of a main `if` statement. If the number is not even, it means that is odd and the program should terminate with a message saying that the number is odd.
 
@@ -272,7 +272,7 @@ Your father has to bring extra chairs (because you only have two chairs at your 
 
 Let’s make a simple Python program that takes a string variable `member` containing the name of the family member and prints a message indicating what he/she needs to bring to the reunion. Before moving on to the code, let’s do a flowchart.
 
-![deusdevFigures (2).jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/57f9f21b-3e9c-4e57-92a5-0ecec2bc3b67/deusdevFigures_(2).jpg)
+![flowchart elif](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse8/flowdiagramelif.jpg)
 
 Start with checking if the member is the father. In case it is, print a message indicating that he needs to bring extra chairs. In case the member is not the father, you still need to check if it is the mother or not. If it is the mother, print a message saying that she needs to bring food, and exit the program. If the member is not the mother, there is only one last case in which the member (whoever it is) has to bring drinks. After that, exit the program and print a “Have fun!” message.
 
