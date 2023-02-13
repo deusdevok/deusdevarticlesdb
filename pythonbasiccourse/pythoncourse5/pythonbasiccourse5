@@ -24,7 +24,7 @@ Strings are sequences of **characters** and are enclosed in either single, doubl
 
 Open a new command line and enter the Python interpreter (if you don’t know how to do this, refer to the article on using the terminal and Python interpreter). Define a new variable called `my_string` and assign the string value “Hello World!”:
 
-```powershell
+```
 >>> my_string = "Hello World!"
 >>> my_string
 'Hello World!'
@@ -36,7 +36,7 @@ If you write the name of the variable and hit Enter, the terminal will output th
 
 Python strings can even be empty. This can be useful in some cases as you will see in later chapters. To create an empty string open and close quotes with nothing in between:
 
-```powershell
+```
 >>> empty_string = ""
 >>> empty_string
 ''
@@ -53,7 +53,7 @@ Every string has different properties. One of the most popular is the number of 
 
 To obtain the length of a string, use the `len()` function. Let’s continue with our example string “Hello World!”. If you manually count the number of characters of this string (including the whitespace between both words) you will find there are 12 of them. Let’s check that with the `len()` function:
 
-```powershell
+```
 >>> my_string = 'Hello World!'
 >>> len(my_string)
 12
@@ -65,7 +65,7 @@ There are other functions to work with strings. You will learn more about them i
 
 You can retrieve specific characters of your string by using **index notation**.  To access a specific character write the name of the variable followed by square brackets. Inside the square brackets enter the **index** corresponding to the position of the character.
 
-```powershell
+```
 >>> my_string[index]
 ```
 
@@ -79,7 +79,7 @@ Note that the index of the last element is not equal to the number of characters
 
 For example, if you want to access the first character of the string (in this case it is the letter H) use the index value of 0 inside the square brackets:
 
-```powershell
+```
 >>> my_string  = 'Hello World!'
 >>> my_string[0]
 'H'
@@ -87,7 +87,7 @@ For example, if you want to access the first character of the string (in this ca
 
 If you want to retrieve the fifth element, this corresponds to the index 4:
 
-```powershell
+```
 >>> my_string  = 'Hello World!'
 >>> my_string[4]
 'o'
@@ -99,7 +99,7 @@ Index can also be negative. For the case of negative indexes you have to think i
 
 In this case the first character of the string can be retrieved with a negative index with a value equal to the length of the string, in this case -12:
 
-```powershell
+```
 >>> my_string  = 'Hello World!'
 >>> my_string[-12]
 'H'
@@ -107,15 +107,15 @@ In this case the first character of the string can be retrieved with a negative 
 
 What would happen if you try to access an element whose index goes out of range?
 
-```powershell
+```
 >>> my_string = 'Hello World!'
 >>> my_string[12]
 Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
+  File "&lt;stdin>", line 1, in &lt;module>
 IndexError: string index out of range
 >>> my_string[-13]
 Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
+  File "&lt;stdin>", line 1, in &lt;module>
 IndexError: string index out of range
 ```
 
@@ -127,7 +127,7 @@ You can do more than just select one specific character from a string. The squar
 
 In order to do that you need to use two index values: the starting and stopping positions.
 
-```powershell
+```
 >>> my_string[start:stop]
 ```
 
@@ -145,7 +145,7 @@ To retrieve the “World” part of your string, you need to go from index 6 thr
 
 So the first index will be 6, and the second index will be 11.
 
-```powershell
+```
 >>> my_string  = 'Hello World!'
 >>> my_string[6:11]
 'World'
@@ -155,7 +155,7 @@ The difference between 11 and 6 is 5, which is the number of characters in the s
 
 You can leave the start or end parameters empty. If you omit the start it will default to zero, while omitting the end will default to the last character of the string.
 
-```powershell
+```
 >>> my_string[:5]
 'Hello'
 >>> my_string[6:]
@@ -168,7 +168,7 @@ You can also retrieve a substring and skipping certain characters from it. For e
 
 There is a third parameter in slice notation which is the `step`. This is also an integer parameter and indicates how many indices to avoid on each pass (defaults to 1).
 
-```powershell
+```
 >>> my_string = 'Hello World!'
 >>> my_string[6:11:2]
 'Wrd'
@@ -176,7 +176,7 @@ There is a third parameter in slice notation which is the `step`. This is also a
 
 The step parameter can also be negative. A negative step makes the output of the substring go backwards. For example, if you want the string “World” become “dlroW”, use a step value of -1, a start of 10 and a stop of 5:
 
-```powershell
+```
 >>> my_string = 'Hello World!'
 >>> my_string[10:5:-1]
 'dlroW'
@@ -186,16 +186,16 @@ The step parameter can also be negative. A negative step makes the output of the
 
 You may be wondering if you can modify the elements of a string. For example in the string “Hello World!”, the character “W” needs to change to lowercase: “w”. You could try to assign the character “w” to the string at index position 6 (where the “W” character is located):
 
-```powershell
+```
 >>> my_string[6] = 'w'
 Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
+  File "&lt;stdin>", line 1, in &lt;module>
 TypeError: 'str' object does not support item assignment
 ```
 
 Python throws an error saying that string objects does not support item assignment. So the solution is to simply create a new variable. For example:
 
-```powershell
+```
 >>> my_new_string = my_string[:6] + 'w' + my_string[7:]
 >>> my_new_string
 'Hello world!'
@@ -205,7 +205,7 @@ Python throws an error saying that string objects does not support item assignme
 
 There are different ways in which a string can be constructed given some variables. For example, say you want to make a string with a welcoming message for a given user and inform their age.
 
-```powershell
+```
 >>> user = 'John'
 >>> age = 23
 ```
@@ -214,7 +214,7 @@ To make an automatic welcoming text string given these variables, you can make u
 
 To make  a format string, use curly braces {} where the variables should be located. At the end of the string use a dot followed by “format”. The format method takes two parameters in this case: the `user` and the `age`. Each of these variables will be replaced where the curly braces are placed, in order.
 
-```powershell
+```
 >>> user = 'John'
 >>> age = 23
 >>> 'Welcome {} ! You are {} years old.'.format(user, age)

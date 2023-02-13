@@ -20,7 +20,7 @@ In this article you will learn how to create and work with lists in Python in di
 
 To define a list in Python use square brackets: `[]`. Inside the square brackets, place the different values you want to store, separated with commas. For example, say you want to create a list with the numbers 1, 2, 3, 4 and 5:
 
-```powershell
+```
 >>> numbers = [1, 2, 3, 4, 5]
 >>> numbers
 [1, 2, 3, 4, 5]
@@ -28,14 +28,14 @@ To define a list in Python use square brackets: `[]`. Inside the square brackets
 
 In the example I included a space after each comma. This is not strictly necessary, but it improves readability. Check the type of the variable `numbers`:
 
-```powershell
+```
 >>> type(numbers)
-<class 'list'>
+&lt;class 'list'>
 ```
 
 As you can see, the type of the variable `numbers` is *list*. In this example you used integer values to create a list. You can use another data type, such as floats or strings:
 
-```powershell
+```
 >>> floats = [1.1, 3.14, 2.71, 5.0]
 >>> floats
 [1.1, 3.14, 2.71, 5.0]
@@ -46,7 +46,7 @@ As you can see, the type of the variable `numbers` is *list*. In this example yo
 
 The cool thing about lists is that the elements don’t need to be of the same type. You can mix different data types in the same list:
 
-```powershell
+```
 >>> mixed_list = [1, 'hello', 3.14, 2+3j]
 >>> mixed_list
 [1, 'hello', 3.14, (2+3j)]
@@ -54,7 +54,7 @@ The cool thing about lists is that the elements don’t need to be of the same t
 
 Lists can be constructed using previously defined variables:
 
-```powershell
+```
 >>> my_name = 'John'
 >>> names = ['Jane', my_name, 'Carol', 'Lucas']
 >>> names
@@ -63,7 +63,7 @@ Lists can be constructed using previously defined variables:
 
 You can also work with empty lists:
 
-```powershell
+```
 >>> empty_list = []
 >>> empty_list
 []
@@ -73,7 +73,7 @@ You can also work with empty lists:
 
 The length of a list is the number of elements it contains. It can be obtained with the `len()` function, similar to how the length of a string is computed. For example, the length of the list `['John', 'Jane', 'Kevin']` should be 3, since it contains three elements (three strings in this case):
 
-```powershell
+```
 >>> names = ['John', 'Jane', 'Kevin']
 >>> len(names)
 3
@@ -81,7 +81,7 @@ The length of a list is the number of elements it contains. It can be obtained w
 
 In the particular case that the list has no elements, that is the list is empty, the length is 0:
 
-```powershell
+```
 >>> empty_list = []
 >>> len(empty_list)
 0
@@ -97,7 +97,7 @@ For example, the list `['John', 'Jane', 'Kevin']` has three elements. The first 
 
 Let’s access each element of the list of names using index notation:
 
-```powershell
+```
 >>> names = ['John', 'Jane', 'Kevin']
 >>> names[0]
 'John'
@@ -113,15 +113,15 @@ Index can be negative. Negative indexes start at -1 for the last element in the 
 
 If you try to access an index that is not valid, Python will throw an error:
 
-```powershell
+```
 >>> names = ['John', 'Jane', 'Kevin']
 >>> names[3]
 Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
+  File "&lt;stdin>", line 1, in &lt;module>
 IndexError: list index out of range
 >>> names[-4]
 Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
+  File "&lt;stdin>", line 1, in &lt;module>
 IndexError: list index out of range
 ```
 
@@ -129,13 +129,13 @@ IndexError: list index out of range
 
 Imagine you have a large list of items and you need to retrieve a specific subset of them. For example, each item may correspond to the mean price of BTC of each day on a given week. In the following example the list `prices` has seven elements, each one being a number corresponding to the price of each day of the week:
 
-```powershell
+```
 >>> prices = [16500, 16550, 16600, 16650, 16700, 16750, 16800]
 ```
 
 The first item at index position 0 corresponds to the price on Sunday, second item at index position 1 is the price on Monday, and so on. Say you want to extract the prices ranging from Monday through Friday. Then we need to go from index 1 up to index 5 inclusive. For this you can use the square bracket index slice notation with two integer numbers separated by a colon:
 
-```powershell
+```
 >>> prices[start:stop]
 ```
 
@@ -143,7 +143,7 @@ The first integer number `start` is the starting index, which is included, and t
 
 For our example we have to use 1 and 6 for the starting and stopping positions, both separated by a colon:
 
-```powershell
+```
 >>> prices = [16500, 16550, 16600, 16650, 16700, 16750, 16800]
 >>> prices[1:6]
 [16550, 16600, 16650, 16700, 16750]
@@ -151,7 +151,7 @@ For our example we have to use 1 and 6 for the starting and stopping positions, 
 
 The start and stop indices can be left blank. The default value for the start index is 0, while the default for the stop is the length of the list minus one (which corresponds to the last element).
 
-```powershell
+```
 >>> prices = [16500, 16550, 16600, 16650, 16700, 16750, 16800]
 >>> prices[:5]
 [16500, 16550, 16600, 16650, 16700]
@@ -161,7 +161,7 @@ The start and stop indices can be left blank. The default value for the start in
 
 A third parameter can be used in slice notation, which is the `step`. The step parameter is also an integer number, and indicates how many elements should the resulting list skip from the starting position. For example you may want to start from the second element (index 1) all the way to the previous to last (index 5) and skipping one element on each step. So the step parameter should be 2, while the start and stop parameters are 1 and 6 (remember the stop parameter is not included, that’s why is 6 and not 5).
 
-```powershell
+```
 >>> prices = [16500, 16550, 16600, 16650, 16700, 16750, 16800]
 >>> prices[1:6:2]
 [16550, 16650, 16750]
@@ -173,7 +173,7 @@ Remember that the list data type can contain elements with mixed data types. The
 
 One very useful technique that is often used among developers is to place lists inside other lists. This can be handy in many situations, for example if you need to store information in table format. Let’s work on an example where only one of the elements of the list is another list.
 
-```powershell
+```
 >>> student = ['Jonh', 23, [73, 49, 94]]
 >>> student
 ['Jonh', 23, [73, 49, 94]]
@@ -181,33 +181,33 @@ One very useful technique that is often used among developers is to place lists 
 
 In this example you have a list containing a first element indicating the name of a student (a string), a second element being the age of the student (an integer) and a third element which can be a list of scores on a given course. Let’s check the type of the `student` variable:
 
-```powershell
+```
 >>> type(student)
-<class 'list'>
+&lt;class 'list'>
 ```
 
 As expected, the variable `student` is of type `list`. Now let’s check the length of this variable. What should we expect to be the length? Is it 3? Or we should also count the number of elements of the inner list? In the latter case the total length should be 5, since we have the name, the age, and the three notes.
 
-```powershell
+```
 >>> len(student)
 3
 ```
 
 As you can see, the length returns only 3. The inner list is counted as only one element for the outer list. You can check the length of the inner list by accessing it with index notation and calling `len()`:
 
-```powershell
+```
 >>> len(student[2])
 3
 ```
 
 This way you are only returning the length of the inner list. What happens if you call `len()` on the other elements?
 
-```powershell
+```
 >>> len(student[0])
 4
 >>> len(student[1])
 Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
+  File "&lt;stdin>", line 1, in &lt;module>
 TypeError: object of type 'int' has no len()
 ```
 
@@ -215,7 +215,7 @@ The length of the first element is 4, since the string `‘John’` has four cha
 
 Finally, let’s see how you can access the elements of the inner list. The inner list is at index position 2, so you have to start writing the name of the variable `student` followed by the index 2 inside square brackets. Next, each element of the inner list also have indexes, in this case 0, 1 and 2. Add the corresponding index inside square brackets after the previous statement. You will end up with something like `student[inner_list_index][element_index]`:
 
-```powershell
+```
 >>> student = ['Jonh', 23, [73, 49, 94]]
 >>> student[2][0]
 73
@@ -233,7 +233,7 @@ The elements of a list can be changed for another. Let’s go back to the `stude
 
 The name of the student (string) is at index position 0. To change its value, write the name of the variable `student` followed by the index between square brackets. Let’s assign the value `‘Oliver’` to the first element of that list:
 
-```powershell
+```
 >>> student = ['Jonh', 23, [73, 49, 94]]
 >>> student[0] = 'Oliver'
 >>> student
@@ -242,7 +242,7 @@ The name of the student (string) is at index position 0. To change its value, wr
 
 As you can see, the list itself has changed after the re-assignment. You can also try to edit the second score, which is the second item inside the inner list. That is, first index is 2 (the position of the inner list) and the second index is 1 (the second position inside the inner list):
 
-```powershell
+```
 >>> student[2][1] = 88
 >>> student
 ['Oliver', 23, [73, 88, 94]]
@@ -256,15 +256,15 @@ Python lists are very similar to strings. They are both sequences of data. While
 
 You can convert a string into a list by using the `list()` function:
 
-```powershell
+```
 >>> text = 'hello world'
 >>> type(text)
-<class 'str'>
+&lt;class 'str'>
 >>> list_type = list(text)
 >>> list_type
 ['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd']
 >>> type(list_type)
-<class 'list'>
+&lt;class 'list'>
 ```
 
 You could try to convert a list into a string, but is not so easy. We will cover such techniques in later chapters of the course.

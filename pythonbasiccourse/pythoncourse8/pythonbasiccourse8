@@ -26,7 +26,7 @@ Remember that boolean variables can take two values: `True` or `False`. For our 
 
 A variable containing boolean values can be directly defined with the keywords `True` or `False`:
 
-```powershell
+```
 >>> raining = True
 >>> raining
 True
@@ -41,7 +41,7 @@ In this case the variable `raining` will contain `True` or `False`, depending on
 
 Boolean logic can be much more complex than just defining a single variable with `True` or `False`. Imagine you want to check if two different variables are `True` at the same time. For this you can use the `and` boolean operator:
 
-```powershell
+```
 >>> raining = True
 >>> cold = False
 >>> raining and cold
@@ -59,7 +59,7 @@ The different combinations for the `and` boolean operator are on the table below
 
 Another boolean operator is the `or`, which is used to check if at least one of the variables is set to `True`.
 
-```powershell
+```
 >>> raining = True
 >>> cold = False
 >>> raining or cold
@@ -221,7 +221,7 @@ If the number is even, you have to make another decision to check if the number 
 
 To check if the number `n` is even or odd you can make use of the *modulo (or modulus) operator*, symbolized by `%`. This operator returns the remainder of the division between two numbers. When you divide a number by 2, you can get two possible remainders: 0 or 1. If you get a remainder of 0, it means the number is a multiple of 2 (**even**), while if you get a remainder of 1, the number is not a multiple of 2 (**odd**). Open a Python interpreter and try out the modulo operator with different integer numbers:
 
-```powershell
+```
 >>> 1%2
 1
 >>> 2%2

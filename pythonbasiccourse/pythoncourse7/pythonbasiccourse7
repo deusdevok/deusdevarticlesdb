@@ -28,17 +28,17 @@ The countries are the **keys**, while their capitals are the **values**. Each va
 
 To define a dictionary use curly braces: `{}`. Inside the curly braces include key-value pairs separated by a colon. For the example of this article, the key (country) and the value (capital) are both strings:
 
-```powershell
+```
 >>> countries = {'India': 'New Delhi'}
 >>> type(countries)
-<class 'dict'>
+&lt;class 'dict'>
 >>> countries
 {'India': 'New Delhi'}
 ```
 
 As you can see, checking the type of the newly created dictionary says that is of the *dict* type. Let’s define the dictionary variable `countries` with all the information. To add new key-value pairs, separate them with a comma:
 
-```powershell
+```
 >>> countries = {'India': 'New Delhi', 'Argentina': 'Buenos Aires', 'Spain': 'Madrid', 'France': 'Paris', 'Kenya': 'Nairobi'}
 >>> countries
 {'India': 'New Delhi', 'Argentina': 'Buenos Aires', 'Spain': 'Madrid', 'France': 'Paris', 'Kenya': 'Nairobi'}
@@ -48,7 +48,7 @@ After printing the `countries` variable on the screen you can see all the inform
 
 Another way to create a dictionary is to begin with an empty dictionary and add new items one by one. To create an empty dictionary use empty curly braces, `{}`. To add new items to the dictionary, write the name of the variable where the empty dictionary is stored, followed by square brackets. Inside the square brackets write the `key`, in this case the country in string format. Finally assign the corresponding `value`, in this the capital.
 
-```powershell
+```
 >>> countries = {}
 >>> countries['India'] = 'New Delhi'
 >>> countries['Argentina'] = 'Buenos Aires'
@@ -67,7 +67,7 @@ The length of a dictionary is the number of the key-value pairs it contains.
 
 For the example of this article, you should expect it to have a length of 5, which is the number of entries, or rows on the table. It is true that if you count countries (keys) and capitals (values) you will end up with a total of 10, but the length of a dictionary is computed as the number of key-value *pairs*.
 
-```powershell
+```
 >>> countries = {'India': 'New Delhi', 'Argentina': 'Buenos Aires', 'Spain': 'Madrid', 'France': 'Paris', 'Kenya': 'Nairobi'}
 >>> len(countries)
 5
@@ -75,7 +75,7 @@ For the example of this article, you should expect it to have a length of 5, whi
 
 In a particular case that the dictionary is empty, its length is 0:
 
-```powershell
+```
 >>> empty_dict = {}
 >>> len(empty_dict)
 0
@@ -87,17 +87,17 @@ Now that you have learned how to define a dictionary with a bunch of key-value p
 
 Having defined our simple example with 5 countries, let’s check what is the capital of Spain. To do this, you need to find the *key* with the string value `Spain`, and obtain the associated *value*, which is after the colon. Write the name of the variable containing the dictionary, followed by square brackets. Inside the square brackets put the value of the key you are looking for:
 
-```powershell
+```
 >>> countries['Spain']
 'Madrid'
 ```
 
 Cool! Retrieving values from keys in a dictionary is analogous as getting a value from a list given its index. Let’s see what would happen if you try to access an item with a non existent key:
 
-```powershell
+```
 >>> countries['China']
 Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
+  File "&lt;stdin>", line 1, in &lt;module>
 KeyError: 'China'
 ```
 
@@ -109,7 +109,7 @@ Python throws an `KeyError` claiming that the key China doesn’t exist.
 
 You can add new key-value pairs to an already created dictionary. To do this, assign the value to `countries[key]`, where the key is the new country. This is the same as adding new items to an empty dictionary.
 
-```powershell
+```
 >>> countries['Canada'] = 'Ottawa'
 >>> countries
 {'India': 'New Delhi', 'Argentina': 'Buenos Aires', 'Spain': 'Madrid', 'France': 'Paris', 'Kenya': 'Nairobi', 'Canada': 'Ottawa'}
@@ -121,7 +121,7 @@ In this example you added the country Canada as a key, and assigned the value Ot
 
 Remember that keys have to be unique. What would happen if you try to assign a new value to an already existing key? For example, let’s assign the number 39 to Spain.
 
-```powershell
+```
 >>> countries
 {'India': 'New Delhi', 'Argentina': 'Buenos Aires', 'Spain': 'Madrid', 'France': 'Paris', 'Kenya': 'Nairobi', 'Canada': 'Ottawa'}
 >>> countries['Spain'] = 39
@@ -135,7 +135,7 @@ What you are doing in this case is simply re-assigning a new value to an already
 
 You can also remove elements from your dictionary. For this you use the `del` keyword. For example, let’s delete the Spain element:
 
-```powershell
+```
 >>> del countries['Spain']
 >>> countries
 {'India': 'New Delhi', 'Argentina': 'Buenos Aires', 'France': 'Paris', 'Kenya': 'Nairobi', 'Canada': 'Ottawa'}
@@ -143,10 +143,10 @@ You can also remove elements from your dictionary. For this you use the `del` ke
 
 As you can see, the key Spain has been deleted, along with its corresponding value. When you delete elements from a dictionary by its key, what is deleted is the key-value pair. What would happen if you try to delete an element that is not present in the dictionary? Let’s try to delete the element with the Spain key again:
 
-```powershell
+```
 >>> del countries['Spain']
 Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
+  File "&lt;stdin>", line 1, in &lt;module>
 KeyError: 'Spain'
 ```
 
@@ -156,7 +156,7 @@ As expected, a `KeyError` is raised, since there is not an element with the key 
 
 In this article you have worked with a dictionary where the keys and values are all of the string data type. Python dictionaries can have other data types, such as integers, floats, lists, and even other dictionaries. Let’s try some of those with a newly created dictionary.
 
-```powershell
+```
 >>> d = {}
 >>> d[12] = 99.3
 >>> d['pi'] = 3.14
@@ -170,25 +170,25 @@ In this example an empty dictionary `d` has been created. Next, a first item is 
 
 So far so good. Let’s try a list as a key:
 
-```powershell
+```
 >>> d[[4, 5, 6]] = 'key is list'
 Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
+  File "&lt;stdin>", line 1, in &lt;module>
 TypeError: unhashable type: 'list'
 ```
 
 Ups! Not good. Python doesn’t like lists as dictionary keys. What about another dictionary as a key?
 
-```powershell
+```
 >>> d[{1: 'one', 2: 'two'}] = 'key is dict'
 Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
+  File "&lt;stdin>", line 1, in &lt;module>
 TypeError: unhashable type: 'dict'
 ```
 
 Oh man! What about a tuple?
 
-```powershell
+```
 >>> d[(1, 2, 3)] = 'key is tuple'
 >>> d
 {12: 99.3, 'pi': 3.14, 'list': [1, 2, 3], 'dict': {'name': 'John', 'age': 19}, (1, 2, 3): 'key is tuple'}
@@ -202,7 +202,7 @@ Tuple works as a key for a dictionary. But not lists nor dictionaries. The rule 
 
 Let’s go back to the initial example, the one with the countries and their capitals. What would happen if you tried to convert that dictionary with key-value pairs (country-capital) to a list using the `list()` function? Let’s see:
 
-```powershell
+```
 >>> countries = {'India': 'New Delhi', 'Argentina': 'Buenos Aires', 'Spain': 'Madrid', 'France': 'Paris', 'Kenya': 'Nairobi'}
 >>> list(countries)
 ['India', 'Argentina', 'Spain', 'France', 'Kenya']
@@ -212,7 +212,7 @@ Interesting! The `list()` function applied to the dictionary returned a list of 
 
 You have seen the `list()` function here and in previous tutorials too. You may be wondering if there is a `dict()` function that converts lists to dictionaries. In fact there is. To use the `dict()` function you need to define the key-value pairs as the elements of a list, where each one of them is a tuple containing one key-value pair separated by a comma:
 
-```powershell
+```
 >>> numbers_dict = dict([('one', 1), ('two', 2), ('three', 3)])
 >>> numbers_dict
 {'one': 1, 'two': 2, 'three': 3}

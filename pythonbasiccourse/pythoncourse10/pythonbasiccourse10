@@ -54,10 +54,8 @@ def f(x):
 
 Calling the function defined this way will work exactly the same as the previous example.
 
-<aside>
 💡 The difference between a **parameter** and an **argument** can be subtle at first. A parameter is the name used in the function definition at the def statement level. An argument is the value you give the parameter when the function is called.
 
-</aside>
 
 ### Functions with more than one parameter
 
@@ -197,7 +195,7 @@ print('John', 'Jane', 'Karen', sep=', ')
 # John, Jane, Karen
 ```
 
-So, the `sep` parameter has a default value of `‘ ‘`, which is a space character. What about the period at the end? You can include the `end` parameter with a value of `‘.’`:
+So, the `sep` parameter has a default value of `' '`, which is a space character. What about the period at the end? You can include the `end` parameter with a value of `'.'`:
 
 ```python
 print('John', 'Jane', 'Karen', sep=', ', end='.')
@@ -211,21 +209,21 @@ And there you have it! You just made the same example in just one line of code.
 
 The `len()` function is simpler than the `print()` function because it doesn’t have any extra arguments. The `len()` function returns the number of items in an object, such as a list.
 
-```powershell
+```
 >>> len(['John', 38, 'California'])
 3
 ```
 
 When the `len()` function is applied to a string, it returns the number of characters of it:
 
-```powershell
+```
 >>> len('Hello World!')
 12
 ```
 
 There are specific cases like sets, where you have to pay attention because the number you see may not be equal to what the `len()` function returns:
 
-```powershell
+```
 >>> len({'a', 'b', 'c', 'a'})
 3
 ```
@@ -236,14 +234,14 @@ In this example the output is 3, and not 4, because the set returns the unique e
 
 This is a very interesting and useful function that helps Python programs interact with the user. The `input()` function takes a single string parameter. When the function is called, a message is shown and the program waits for the user to input a string text.
 
-```powershell
+```
 >>> input('Enter your name: ')
 Enter your name:
 ```
 
 In this example we are using the terminal but you can try this with a script file and executing it. Enter your name and hit `Enter`:
 
-```powershell
+```
 >>> input('Enter your name: ')
 Enter your name: DeusDev
 'DeusDev'
@@ -251,7 +249,7 @@ Enter your name: DeusDev
 
 The text you just wrote is shown (returned) on the screen. You can also save what the user inputs in a variable for later use:
 
-```powershell
+```
 >>> name = input('Enter your name: ')
 Enter your name: DeusDev
 >>> print('Your name is', name)

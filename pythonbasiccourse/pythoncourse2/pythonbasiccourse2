@@ -18,7 +18,7 @@ In the previous article we went through the installation and setup of Python. We
 
 Let's start using PowerShell right now. Go ahead and open a new terminal (PowerShell). The first thing you will see on the screen is something like the following:
 
-```
+```bash
 Windows PowerShell
 Copyright (C) Microsoft Corporation. All rights reserved.
 
@@ -31,7 +31,7 @@ As you can see, you have an initial message with Copyright and some extra inform
 
 The last line is the command prompt, where you can enter different commands. yourusername will be your computer user name. At the end of that line you should see a blinking underscore, meaning it is ready to take a written input from the user. For example, you could write `pwd` to print the current working directory:
 
-```
+```bash
 PS C:\Users\yourusername> pwd
 
 Path
@@ -41,7 +41,7 @@ C:\Users\yourusername
 
 When you write `pwd` and hit Enter, the terminal shows the current working directory on the screen. There are a lot of useful commands you can try besides `pwd`. But let's work with the one we are interested in: `python`. Go ahead and write `python` and hit Enter:
 
-```
+```bash
 PS C:\Users\yourusername> python
 Python 3.10.7 (tags/v3.10.7:6cc6b13, Sep  5 2022, 14:08:36) [MSC v.1933 64 bit (AMD64)] on win32
 Type "help", "copyright", "credits" or "license" for more information.
@@ -56,14 +56,14 @@ Lastly you may have noticed that we have three > symbols before the blinking und
 
 Let's go ahead and try `help`, one of the suggested commands.
 
-```
+```bash
 >>> help
 Type help() for interactive help, or help(object) for help about object.
 ```
 
 Seems like we need to include a set of parentheses after help according to the message we just got. Let's do that now.
 
-```
+```bash
 >>> help()
 
 Welcome to Python 3.10's help utility!
@@ -89,7 +89,7 @@ Now is the time for me to suggest you a couple of things you should do that I di
 
 Lastly, notice that the prompt changed again. Now it says help> where you can write your search. Let's try writing "modules" as suggested, just to see what happens.
 
-```
+```bash
 help> modules
 
 Please wait a moment while I gather a list of all available modules...
@@ -188,7 +188,7 @@ for modules whose name or summary contain the string "spam".
 
 Looks overwhelming! So, it is listing all of the available modules we have (we will see what a module is in Python later in this course). You may have a different list with fewer modules. Let's try "keywords" to see what we get.
 
-```
+```bash
 help> keywords
 
 Here is a list of the Python keywords.  Enter any keyword to get more help.
@@ -205,7 +205,7 @@ await               finally             nonlocal            yield
 
 A shorter list now. Let's try entering a keyword from this list to see what help we get.
 
-```
+```bash
 help> for
 The "for" statement
 *******************
@@ -256,7 +256,7 @@ Very nice! We get a lot of helpful information about this for keyword. If you re
 
 Let's quit the help section to try some other Python commands (you can write `quit` or do CTRL+C).
 
-```
+```bash
 help> quit
 
 You are now leaving help and returning to the Python interpreter.
@@ -272,7 +272,7 @@ Remember that the three > signs means we are now on the Python interpreter again
 
 You want to learn Python and you may have already guessed that Python can make calculations fast. So let's see how to make some simple math with the Python interpreter. Let's start simple and try addition, subtraction, multiplication and division.
 
-```
+```bash
 >>> 1+1
 2
 >>> 3-1
@@ -289,7 +289,7 @@ If you look closer on the last example, the answer is shown as 4.0 instead of ju
 
 You can also do more complex calculations, like combined operations. If you need to group operations use parentheses, and you can even use multiple parentheses.
 
-```
+```bash
 >>> 1-8+3
 -4
 >>> 1-(8+3)
@@ -304,7 +304,7 @@ You can also do more complex calculations, like combined operations. If you need
 
 There are other useful operations you can use in Python. The most common are modulus, exponentiation and floor division operators.
 
-```
+```bash
 >>> 10%3
 1
 >>> 2**3
@@ -321,7 +321,7 @@ There are other useful operations you can use in Python. The most common are mod
 
 Another type of data we can play with before moving on are strings. A string is a sequence of characters surrounded by single, double or triple quotes. Within the Python interpreter, try writing different strings and hit Enter to see the output.
 
-```
+```bash
 >>> 'hello in single quotes'
 'hello in single quotes'
 >>> ''hello in double quotes''
@@ -339,7 +339,7 @@ The first thing we tried is writing some text between single quotes and hitting 
 
 A curious thing to note is that no matter if we use single, double or triple quotes, the output is shown with single quotes. What if we need to include quotes in our string? We can use single quotes for our Python string, and use double quotes inside, or the other way around.
 
-```
+```bash
 >>> 'hello, this "word" has quotes'
 'hello, this "word" has quotes'
 >>> "hello, this 'word' has quotes"
@@ -348,7 +348,7 @@ A curious thing to note is that no matter if we use single, double or triple quo
 
 So the title of this section contains the word "operations". Can we "operate" with strings like we did with numbers? We can concatenate strings with the + operator:
 
-```
+```bash
 >>> 'hello'+'world'
 'helloworld'
 >>> 'hello'+' '+'world'
@@ -357,7 +357,7 @@ So the title of this section contains the word "operations". Can we "operate" wi
 
 We can also use the * operator to repeat the same string a given number of times:
 
-```
+```bash
 >>> 'hello'*3
 'hellohellohello'
 ```
@@ -368,7 +368,7 @@ The last topic on this section will be about the basics of using variables in Py
 
 Let's begin by declaring the variable `myName` and assigning it the value of the string 'Carlos'. Then write `myName` and hit Enter to print the value inside of it:
 
-```
+```bash
 >>> myName = 'Carlos'
 >>> myName
 'Carlos'
@@ -376,14 +376,14 @@ Let's begin by declaring the variable `myName` and assigning it the value of the
 
 You can now concatenate a string 'Hello' with 'Carlos' using the variable `myName`:
 
-```
+```bash
 >>> 'Hello ' + myName
 'Hello Carlos'
 ```
 
 The same thing can be done with numbers. Suppose you want to compute the discriminant of a quadratic equation:
 
-```
+```bash
 >>> a = 3
 >>> b = -7
 >>> c = 11
@@ -395,7 +395,7 @@ Using variables in Python is a great way to write better and more readable code.
 
 To quit the Python interpreter you can use quit() (don't forget the parentheses like I did):
 
-```
+```bash
 >>> quit
 Use quit() or Ctrl-Z plus Return to exit
 >>> quit()
