@@ -1,0 +1,359 @@
+********title
+Weather app using Flask and the openweathermap API
+********
+
+********slug
+flask-weather-app
+********
+
+********featuredimage
+https://thumbs.dreamstime.com/b/panoramic-view-sun-star-galaxy-shines-space-wide-stars-concept-theme-ecology-environment-earth-day-222892837.jpg
+********
+
+One of the most popular applications people use practically everyday is the one that tells you the weather. It is used in mobile, desktop, tablet, and you can even see it used on television by weather reporters. This kind of application can tell you the weather for the present day, and also the forecast of the following days.
+
+Weather apps are also a good practice project when learning to build web applications using public APIs. In this blog post we are going to create a simple weather app using Python, specifically the Flask framework. For the API we are going to use the one from [openweathermap.org](openweathermap.org).
+
+# Why Flask?
+
+The idea is to make a web application where one can enter the city (like New York, Buenos Aires, London, etc), and after clicking the search button the relevant information shows on the screen (temperature, pressure, humidity, etc).
+
+The application we are going to make will look like the following image:
+
+![flask weather app](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/blog/flaskweatherapp/flask-weather-app.jpg)
+
+*__Figure 1__. A Weather app built in Flask, using the openweathermap API.*
+
+Actually not quite like the image, but the full code can be found on this [GitHub repository](https://github.com/deusdevok/Flask-Weather-App). The repository contains all the styles to make it look like the image. In this blog post I'm going to focus on the functionality without styling.
+
+On the right hand side we can enter the city using an input field. When clicking the search button (the magnifying glass in this case) we get a bunch of information. On the same right hand side we have the temperature feeling, pressure, humidity and wind.
+
+On the left hand side we have the main temperature shown in big numbers, and below the name of the city and an icon with some more details like broken clouds, clear sky, etc.
+
+Flask is a framework that lets one make such a simple web application with no much effort. By the end of this blog post you will realize that the code you will use is much simpler than you may think.
+
+# Prerequisites
+
+Before continuing with this reading, you need to have knowledge of Python and basic HTML.
+
+Here is a short list of things you need to know for a better understanding of this article, along with a link with more information.
+
+__Python__
+
+* [Official Python Site](https://www.python.org/)
+* [w3schools Python tutorial](https://www.w3schools.com/python/)
+* [Matplotlib](https://matplotlib.org/stable/tutorials/index)
+
+__Flask__
+
+* [Flask official docs](https://flask.palletsprojects.com/en/2.2.x/)
+
+__HTML__
+
+* [w3schools](https://www.w3schools.com/html/default.asp)
+* [HTML MDN web docs (mozilla)](https://developer.mozilla.org/en-US/docs/Learn/HTML)
+
+# Starting Flask code: hello world
+
+Let's start with something simple. Make a new file called weather.py, where the main Python code and the Flask app will be stored.
+
+The basic imports we are going to need first are Flask and render_template from the flask module. After the imports, create an instance of a Flask app: `app = Flask("__name__")`
+
+After that, make a hello function which returns the basic html template. This function has to be decorated with `@app.route("/")`. This creates a simple route to see the app working on the browser.
+
+```python
+# weather.py
+from flask import Flask, render_template
+
+app = Flask("__name__")
+
+@app.route("/")
+def hello():
+    return render_template("index.html")
+```
+
+Since we need to render a template named index.html, let's create such a file with the following contents. For simplicity I will show only the code that will be inside the body of the html template. You should include tags like html, head, meta, link, etc.
+
+```html
+<div>
+  <p>Hello man !</p>
+</div>
+```
+
+Remember that templates have to be placed in a folder called "templates" for flask to be able to find them.
+
+In the terminal execute the following command to run the Flask application:
+
+```
+$ flask --app weather --debug run
+```
+
+You should be able to see the app running on localhost (for example http://127.0.0.1:5000/). By opening a web browser using the direction given in the console you can see the text "Hello man !" on the screen.
+
+So far we have just made a simple hello world flask app. Let's move on.
+
+# Input text: form
+
+We need to be able to input text somehow. This can be achieved through a form element in our template. What we will do next is to input a text and show the result on screen.
+
+In the "index.html" file make a form element and give it a method equal to POST. This way when you click the submit button, a request is made with a POST method and the input values can be later be accessed in our python file.
+
+```html
+<form method="post">
+  <input name="city" type="text">
+  <button type="submit">Search</button>
+</form>
+```
+
+By using a POST method we will be able to collect the input values using requests like this:
+
+```html
+<form method="post">
+  <input name="city" type="text" value="{{ request.form['city'] }}">
+  <button type="submit">Search</button>
+</form>  
+```
+
+With this addition, entering a string value in the input field and pressing Search will make the value sent over a request. The idea is to pick this value up in our Python code for further use. To do that we need to call a function which I will name get_weather using the action property in the form element:
+
+```html
+<form method="post" action="{{ url_for('get_weather') }}">
+  <input name="city" type="text" value="{{ request.form['city'] }}">
+  <button type="submit">Search</button>
+</form>
+```
+
+The function get_weather needs to be decorated with @app.route("/city") and allowing methods GET and POST (using only POST will also work, but is good practice to allow both GET and POST). I have set the route for this to be "/city".
+
+```python
+@app.route("/city", methods=("GET", "POST"))
+def get_weather():
+    if request.method == "POST":
+        city = request.form["city"]
+        return render_template("index.html", city=city)
+    return render_template("index.html")
+```
+
+When you click the button Search, the route will be changed to "/city" because of the decorator's first argument. Inside the function get_weather we first check if the request method is POST. In that case we read the input value using `request`.form["city"]` and save it in a variable called city for later use.
+
+Here we are using request from the flask module. This is different from the Python module requests. Pay attention to the difference between these two. We will be using the requests module later.
+
+Next we show the index.html template by using the render_template function, and passing an extra argument which is the city. In case the request method is not POST, just render the template without the city argument.
+
+In the html template now we can make use of the variable city using Jinja syntax, placing it inside double curly braces. This is because render_template was called with a second argument where the new variable city was set.
+
+```html
+<div>
+  <h1>Weather app !</h1>
+
+  <form method="post" action="{{ url_for('get_weather') }}">
+    <input name="city" type="text" value="{{ request.form['city'] }}">
+    <button type="submit">Search</button>
+  </form>
+
+  <p>You have entered: {{ city }}</p>
+</div>
+```
+
+I also changed the "Hello man" text to an h1 tag with the text "Weather app !". Next the form is shown and finally a paragraph showing the input value next to the text "You have entered:".
+
+Give it a try and make sure it works as expected. What we are going to do next is connect the input value with the weather API to grab our desired information.
+
+# The data: API from openweathermap
+
+Remember we need to show weather data based on the city input by the user. Somehow we have to use that value to get our data (temperature, pressure, etc) and show it in our application interface.
+
+Where do we get the real weather data from? We need some website that gives us real time data. There are many options to choose from. One good option that I will use for this project is the one from [openweathermap.org](https://openweathermap.org/).
+
+This site has different options to use, both free and paid. Let's try some free options for this simple project. From the main website go to API, and then look for the 5 Day / 3 Hour Forecast option. Click on API doc. You will find all the information about how to make API calls: [https://openweathermap.org/forecast5](https://openweathermap.org/forecast5).
+
+All the examples need to use an API key, which you can obtain for free by signing up. I will be using the following API call structure: `https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={API key}`
+
+As you can see, the value of the query q is the variable city, which comes from our input field. The units used are metric, for which the temperature is expressed in Celsius. Lastly the appid needs to be set with your own API key.
+
+* q: the city name (it can have spaces, like Buenos Aires)
+* units: the units in which the variables are being shown (metric)
+* appid: your API key
+
+Give it a try. For example, using London as the city, your query would look something like this (replace xxxxxx with your API key): `https://api.openweathermap.org/data/2.5/weather?q=London&units=metric&appid=xxxxxx`
+
+When opening this link in a browser, I get this text on screen:
+
+```
+{"coord":{"lon":-0.1257,"lat":51.5085},"weather":[{"id":804,"main":"Clouds","description":"overcast clouds","icon":"04n"}],"base":"stations","main":{"temp":12.35,"feels_like":11.44,"temp_min":10.47,"temp_max":13.86,"pressure":1002,"humidity":69},"visibility":10000,"wind":{"speed":3.6,"deg":280},"clouds":{"all":96},"dt":1664219091,"sys":{"type":2,"id":2075535,"country":"GB","sunrise":1664171560,"sunset":1664214665},"timezone":3600,"id":2643743,"name":"London","cod":200}
+```
+
+This is the "response" given by the server. It is a [JSON](https://www.json.org/json-en.html) formatted data, where different information is shown. We can now use this to get our data. However, if we want to understand this response we can show it in a more readable format.
+
+There is a nice Chrome extension called [JSON Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa/related) that lets you show the JSON in a more human readable form. By using this extension we can see the response like this:
+
+```
+{
+  "coord": {
+    "lon": -0.1257,
+    "lat": 51.5085
+  },
+  "weather": [
+    {
+      "id": 804,
+      "main": "Clouds",
+      "description": "overcast clouds",
+      "icon": "04n"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 12.35,
+    "feels_like": 11.44,
+    "temp_min": 10.47,
+    "temp_max": 13.86,
+    "pressure": 1002,
+    "humidity": 69
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 3.6,
+    "deg": 280
+  },
+  "clouds": {
+    "all": 96
+  },
+  "dt": 1664219091,
+  "sys": {
+    "type": 2,
+    "id": 2075535,
+    "country": "GB",
+    "sunrise": 1664171560,
+    "sunset": 1664214665
+  },
+  "timezone": 3600,
+  "id": 2643743,
+  "name": "London",
+  "cod": 200
+}    
+```
+
+First thing we should be looking at is the "cod" key, which in this case has a value of 200. This means "OK", the request has succeeded. If you try a city that doesn't exist like "non existing city": `https://api.openweathermap.org/data/2.5/weather?q=non%20existing%20city&units=metric&appid=xxxxxx`, you will get a response that looks like this:
+
+```
+{
+  "cod": "404",
+  "message": "city not found"
+}
+```
+
+In this case the "cod" key returned a value of 404, which means the resource has not been found. The API gives an extra "message" key which helps us better understand what happened: "city not found", as expected.
+
+# Don't expose your API keys
+
+Let's start by saving our API key in a safe way. This is useful in case you want to store your code in a public repository and you don't want people to see your private information like this. Make a new file called "local_settings.py" and assign your API key to a variable called *SECRET_KEY* (replace 'xxxxxx' with your actual key).
+
+```
+SECRET_KEY = 'xxxxxx'
+```
+
+In your weather.py file import the variable just created:
+
+```python
+from local_settings import SECRET_KEY
+```
+
+This way you can use your API key through the variable SECRET_KEY without showing it directly in the code. If you are working with a git repository, you may want to add the file local_settings.py in your .gitignore.
+
+# The url path
+
+Let's move on to construct our url from the variable city entered by the user. Remember we have this url structure to get the data from the API: `https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={API key}`. This url can be broken down into four parts:
+
+* https://api.openweathermap.org/data/2.5/weather?q=
+* {city}
+* &units=metric&appid=
+* {API key}
+
+In Python we have to construct our variable `url_path` by adding these four *strings*. Keep in mind that city and API key will be coming from variables:
+
+```python
+url_path = 'https://api.openweathermap.org/data/2.5/weather?q='+city+'&units=metric&appid='+SECRET_KEY
+```
+
+Now we make a request to this url. Let's import the requests module:
+
+```python
+import requests
+```
+
+Make a get request to the url `url_path` and save the response to a variable called `r` (response). Since we already know the response is in json format, let's convert it to a Python object (dictionary) using the `json()` method and save the result in a variable called `data`:
+
+```python
+r = requests.get(url_path)
+data = r.json()
+```
+
+And lastly let's pass this `data` variable as an argument to `render_template`, so we can use it and show in our template:
+
+```python
+return render_template(“index.html”, city=city, data=data)
+```
+
+Finally (I promise we are close) in our html template we show the result in another paragraph tag like this:
+
+```html
+<p>{{ data }}</p>
+```
+
+Give it a try. In the input box search for a city called "non existing city". You will get this, since the city does not exist:
+
+```
+{'cod': '404', 'message': 'city not found'}
+```
+
+But if you search for an actual city like "London", you get something like this:
+
+```
+{'coord': {'lon': -0.1257, 'lat': 51.5085}, 'weather': [{'id': 804, 'main': 'Clouds', 'description': 'overcast clouds', 'icon': '04n'}], 'base': 'stations', 'main': {'temp': 14.29, 'feels_like': 13.16, 'temp_min': 12.25, 'temp_max': 15.86, 'pressure': 1015, 'humidity': 53}, 'visibility': 10000, 'wind': {'speed': 4.63, 'deg': 280}, 'clouds': {'all': 100}, 'dt': 1664128421, 'sys': {'type': 2, 'id': 2075535, 'country': 'GB', 'sunrise': 1664085064, 'sunset': 1664128404}, 'timezone': 3600, 'id': 2643743, 'name': 'London', 'cod': 200}
+```
+
+Success! There is our json formatted data right in our application interface. All there is left to do is to pick our desired data up from this json, and show just that. Let's do that next.
+
+# Show specific results: playing with json and Jinja
+
+There are a couple different ways to pick specific data from a json structured data. In this blog post I'm going to do this directly in the template, using Jinja syntax.
+
+As you can see in the json example, the temperature information is part of the "main" key. Let's access it and show it:
+
+```html
+<p>{{ data['main'] }}</p>
+```
+
+If you run the Flask application you will get an error: `jinja2.exceptions.UndefinedError: 'data' is undefined`.
+
+What is happening is that we are trying to access a key from an object that is not yet existing. To avoid getting an error we can make use of an if statement to check if the data is existing or not:
+
+```html
+{% if data %}
+  <p>{{ data['main'] }}</p>
+{% endif %}
+```
+
+This way the 'main' key data is only shown when it is available. If you enter London in the search input you will see something like this:
+
+```
+{'temp': 12.62, 'feels_like': 11.63, 'temp_min': 10.27, 'temp_max': 13.86, 'pressure': 1013, 'humidity': 65}
+```
+
+Looking promising! Now all we have to do is access each property inside this object. Let's get the temperature 'temp', temperature feeling 'feels_like', 'pressure' and 'humidity'.
+
+```html
+{% if data %}
+  <p>Temperature: {{ data['main']['temp'] }} °C</p>
+  <p>Temperature feeling: {{ data['main']['feels_like'] }} °C</p>
+  <p>Pressure: {{ data['main']['pressure'] }} hPa</p>
+  <p>Humidity: {{ data['main']['humidity'] }} %</p>
+{% endif %}
+```
+
+You can do a lot more with the data, like showing an icon corresponding to the present weather. The app that looks like the image at the beginning of the post can be done using the full code (css styles and images included) from the [GitHub repository](https://github.com/deusdevok/Flask-Weather-App).
+
+# Summary
+In this blog post we have gone through the creation of a simple weather app using the Flask framework from Python. The app lets the user enter a city in a search box and the data of the present weather is shown. The data comes from the [openweathermap.org](https://openweathermap.org/) site.
+
+This is an excellent project to practice your Python and Flask skills, and also to show your final project in your portfolio.
