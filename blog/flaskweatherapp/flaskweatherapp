@@ -7,7 +7,7 @@ flask-weather-app
 ********
 
 ********featuredimage
-https://thumbs.dreamstime.com/b/panoramic-view-sun-star-galaxy-shines-space-wide-stars-concept-theme-ecology-environment-earth-day-222892837.jpg
+https://max.nwstatic.co.uk/newsimages2016/rain/stormy-clouds-crop.jpg
 ********
 
 One of the most popular applications people use practically everyday is the one that tells you the weather. It is used in mobile, desktop, tablet, and you can even see it used on television by weather reporters. This kind of application can tell you the weather for the present day, and also the forecast of the following days.
@@ -264,7 +264,7 @@ This way you can use your API key through the variable SECRET_KEY without showin
 
 Let's move on to construct our url from the variable city entered by the user. Remember we have this url structure to get the data from the API: `https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={API key}`. This url can be broken down into four parts:
 
-* https://api.openweathermap.org/data/2.5/weather?q=
+* https&#8203;://api.openweathermap.org/data/2.5/weather?q=
 * {city}
 * &units=metric&appid=
 * {API key}
