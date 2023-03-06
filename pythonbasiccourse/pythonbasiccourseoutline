@@ -1,0 +1,36 @@
+********title
+1 - Introduction to Python: Course Outline
+********
+
+********slug
+introduction-to-python-outline
+********
+
+********featuredimage
+https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse1/pythoncourse1featured.jpg
+********
+
+## What is Python?
+
+Python is a great programming language for everyone.
+
+## List of topics
+
+- Introduction
+    - [**Installation**](/introduction-to-python/introduction-to-python-installation-setup)
+    - [**Terminal**](/introduction-to-python/introduction-to-python-terminal-interpreter)
+    - [**Text editors**](/introduction-to-python/introduction-to-python-text-editors-and-ides)
+- Data Types
+    - [**Introduction to data types**](/introduction-to-python/introduction-to-python-data-types)
+    - [**Working with strings**](/introduction-to-python/introduction-to-python-strings)
+    - [**Working with lists**](/introduction-to-python/introduction-to-python-lists)
+    - [**Working with dictionaries**](/introduction-to-python/introduction-to-python-dictionaries)
+- Flow control
+    - [**Conditional statements:  if, elif, else statements**](/introduction-to-python/introduction-to-python-conditional-statements)
+    - [**Loops: for and while, break, continue and pass**](/introduction-to-python/introduction-to-python-loops)
+- Functional programming
+    - [**Functions**](/introduction-to-python/introduction-to-python-functions)
+    - [**Methods**](/introduction-to-python/introduction-to-python-methods)
+    - [**Modules**](/introduction-to-python/introduction-to-python-modules)
+- Building your own practice projects
+    - [**Projects**](/introduction-to-python/introduction-to-python-practice-proyects)
