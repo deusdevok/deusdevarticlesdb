@@ -10,7 +10,7 @@ introduction-to-python-practice-proyects
 https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythoncourse1/pythoncourse1featured.jpg
 ********
 
-This section of the basic Python course is intended for you to practice what you have learned so far. There is a lot you can do with what you already learned, and in this short article you are getting a couple of ideas for practice projects. Let’s get started and have fun!
+This section of the basic Python course is intended for you to practice what you have learned so far. There is a lot you can do with what you have already learned, and in this short article you are getting a couple of ideas for practice projects. Let's get started and have fun!
 
 ## Rock, paper, scissors game
 
@@ -70,3 +70,5 @@ The user plays against the computer one game after another as long as the user d
 3. The computer also needs to choose between rock, paper or scissors. You could make use of the `random` module to randomly choose between the three options, particularly with the `choice()` function.
 4. In each game you need to check who won, or if there was a tie. For this you could make a series of `if-else` and possibly `elif` statements. For example, if the user chose Rock and the computer chose Scissors, then the user won the game.
 5. You could keep a score of the game by using a variable `score`, initially being equal to 0. Each game you win adds up one point to the final score. Remember you can increase a variable with `score += 1`.
+
+## Countdown timer and clock
