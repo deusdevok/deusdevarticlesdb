@@ -7,345 +7,266 @@ html-circular-text-pi
 ********
 
 ********featuredimage
-https://max.nwstatic.co.uk/newsimages2016/rain/stormy-clouds-crop.jpg
+https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL3BpLTIuanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjo4Mjh9fX0=
 ********
 
 Have you ever wondered how to make a circular text using HTML, CSS and maybe some JavaScript? In this article you are going to make the following:
 
-![flask weather app](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/blog/flaskweatherapp/flask-weather-app.jpg)
+![pi circling digits](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/blog/htmlcirculartextpi/picirclingdigitsfull.gif)
 
-*__Figure 1__. A Weather app built in Flask, using the openweathermap API.*
+*__Figure 1__. Pi symbol with its digits circling around it.*
 
-Actually not quite like the image, but the full code can be found on this [GitHub repository](https://github.com/deusdevok/Flask-Weather-App). The repository contains all the styles to make it look like the image. In this blog post I'm going to focus on the functionality without styling.
-
-On the right hand side we can enter the city using an input field. When clicking the search button (the magnifying glass in this case) we get a bunch of information. On the same right hand side we have the temperature feeling, pressure, humidity and wind.
-
-On the left hand side we have the main temperature shown in big numbers, and below the name of the city and an icon with some more details like broken clouds, clear sky, etc.
-
-Flask is a framework that lets one make such a simple web application with no much effort. By the end of this blog post you will realize that the code you will use is much simpler than you may think.
+In this example the symbol Pi (π) is surrounded by the first digits of the [number pi](https://en.wikipedia.org/wiki/Pi). I made this for a [Codepen Challenge](https://codepen.io/challenges/2022/june/4).
 
 # Prerequisites
 
-Before continuing with this reading, you need to have knowledge of Python and basic HTML.
+Before continuing with this reading, you need to have knowledge of HTML, CSS and JavaScript.
 
-Here is a short list of things you need to know for a better understanding of this article, along with a link with more information.
+If you haven't learn anything about HTML, CSS and JavaScript or you don't know what I'm talking about, I recommend you start at least with the very basics. Here is a short list of resources you can start learning from.
 
-__Python__
+**HTML**
+- [w3schools](https://www.w3schools.com/html/default.asp)
+- [HTML MDN web docs (mozilla)](https://developer.mozilla.org/en-US/docs/Learn/HTML)
 
-* [Official Python Site](https://www.python.org/)
-* [w3schools Python tutorial](https://www.w3schools.com/python/)
-* [Matplotlib](https://matplotlib.org/stable/tutorials/index)
+**CSS**
+- [w3schools](https://www.w3schools.com/css/default.asp)
+- [CSS MDN web docs (mozilla)](https://developer.mozilla.org/en-US/docs/Learn/CSS)
 
-__Flask__
+**HTML and CSS**
+- [freeCodeCamp](https://www.freecodecamp.org/)
+- [HTML and CSS from Jon Duckett](https://www.htmlandcssbook.com/)
+**JavaScript**
+- [DeusDev: Getting started with JavaScript: a Hello World program.](https://deusdev.tech/blog/javascript-hello-world/)
+- [w3schools](https://www.w3schools.com/js/)
+- [freeCodeCamp](https://www.freecodecamp.org/)
 
-* [Flask official docs](https://flask.palletsprojects.com/en/2.2.x/)
+There are a lot of free and paid resources all over the internet to learn HTML, CSS and JavaScript. You can search for any of them and find great tutorials!
 
-__HTML__
+# First set up
 
-* [w3schools](https://www.w3schools.com/html/default.asp)
-* [HTML MDN web docs (mozilla)](https://developer.mozilla.org/en-US/docs/Learn/HTML)
+In this article I'm not going to make use of `html` or `body` tags explicitly. Same goes for `link`, `script` or any other general tags you may need to use to properly render your code on a browser window.
 
-# Starting Flask code: hello world
-
-Let's start with something simple. Make a new file called weather.py, where the main Python code and the Flask app will be stored.
-
-The basic imports we are going to need first are Flask and render_template from the flask module. After the imports, create an instance of a Flask app: `app = Flask("__name__")`
-
-After that, make a hello function which returns the basic html template. This function has to be decorated with `@app.route("/")`. This creates a simple route to see the app working on the browser.
-
-```python
-# weather.py
-from flask import Flask, render_template
-
-app = Flask("__name__")
-
-@app.route("/")
-def hello():
-    return render_template("index.html")
-```
-
-Since we need to render a template named index.html, let's create such a file with the following contents. For simplicity I will show only the code that will be inside the body of the html template. You should include tags like html, head, meta, link, etc.
+Let's set the initial code in a `index.html` file:
 
 ```html
-<div>
-  <p>Hello man !</p>
-</div>
+<div id="container">
+  <h1>π</h1>
+  <div id="numbers"></div>
+</div> 
 ```
 
-Remember that templates have to be placed in a folder called "templates" for flask to be able to find them.
+The code above should be placed inside the `body` section of your *html*. We have a `div` with and *id* named "container". This will encapsulate all the contents: the *pi* symbol and the digits surrounding it.
 
-In the terminal execute the following command to run the Flask application:
+For the *pi* (π) symbol let's use an `h1` tag and just place the π symbol as the inner text.
 
-```
-$ flask --app weather --debug run
-```
+For the surrounding numbers, let's just make a `div` with an *id* named "numbers". We will figure out what to do with it later.
 
-You should be able to see the app running on localhost (for example http://127.0.0.1:5000/). By opening a web browser using the direction given in the console you can see the text "Hello man !" on the screen.
+We can go ahead and start with some basic stylings:
 
-So far we have just made a simple hello world flask app. Let's move on.
+```css
+body {
+  background: rgb(255, 158, 158); /* pink background color */
+}
 
-# Input text: form
+#container {
+  margin-top: 170px;
+}
 
-We need to be able to input text somehow. This can be achieved through a form element in our template. What we will do next is to input a text and show the result on screen.
-
-In the "index.html" file make a form element and give it a method equal to POST. This way when you click the submit button, a request is made with a POST method and the input values can be later be accessed in our python file.
-
-```html
-<form method="post">
-  <input name="city" type="text">
-  <button type="submit">Search</button>
-</form>
-```
-
-By using a POST method we will be able to collect the input values using requests like this:
-
-```html
-<form method="post">
-  <input name="city" type="text" value="{{ request.form['city'] }}">
-  <button type="submit">Search</button>
-</form>  
-```
-
-With this addition, entering a string value in the input field and pressing Search will make the value sent over a request. The idea is to pick this value up in our Python code for further use. To do that we need to call a function which I will name get_weather using the action property in the form element:
-
-```html
-<form method="post" action="{{ url_for('get_weather') }}">
-  <input name="city" type="text" value="{{ request.form['city'] }}">
-  <button type="submit">Search</button>
-</form>
-```
-
-The function get_weather needs to be decorated with @app.route("/city") and allowing methods GET and POST (using only POST will also work, but is good practice to allow both GET and POST). I have set the route for this to be "/city".
-
-```python
-@app.route("/city", methods=("GET", "POST"))
-def get_weather():
-    if request.method == "POST":
-        city = request.form["city"]
-        return render_template("index.html", city=city)
-    return render_template("index.html")
-```
-
-When you click the button Search, the route will be changed to "/city" because of the decorator's first argument. Inside the function get_weather we first check if the request method is POST. In that case we read the input value using `request`.form["city"]` and save it in a variable called city for later use.
-
-Here we are using request from the flask module. This is different from the Python module requests. Pay attention to the difference between these two. We will be using the requests module later.
-
-Next we show the index.html template by using the render_template function, and passing an extra argument which is the city. In case the request method is not POST, just render the template without the city argument.
-
-In the html template now we can make use of the variable city using Jinja syntax, placing it inside double curly braces. This is because render_template was called with a second argument where the new variable city was set.
-
-```html
-<div>
-  <h1>Weather app !</h1>
-
-  <form method="post" action="{{ url_for('get_weather') }}">
-    <input name="city" type="text" value="{{ request.form['city'] }}">
-    <button type="submit">Search</button>
-  </form>
-
-  <p>You have entered: {{ city }}</p>
-</div>
-```
-
-I also changed the "Hello man" text to an h1 tag with the text "Weather app !". Next the form is shown and finally a paragraph showing the input value next to the text "You have entered:".
-
-Give it a try and make sure it works as expected. What we are going to do next is connect the input value with the weather API to grab our desired information.
-
-# The data: API from openweathermap
-
-Remember we need to show weather data based on the city input by the user. Somehow we have to use that value to get our data (temperature, pressure, etc) and show it in our application interface.
-
-Where do we get the real weather data from? We need some website that gives us real time data. There are many options to choose from. One good option that I will use for this project is the one from [openweathermap.org](https://openweathermap.org/).
-
-This site has different options to use, both free and paid. Let's try some free options for this simple project. From the main website go to API, and then look for the 5 Day / 3 Hour Forecast option. Click on API doc. You will find all the information about how to make API calls: [https://openweathermap.org/forecast5](https://openweathermap.org/forecast5).
-
-All the examples need to use an API key, which you can obtain for free by signing up. I will be using the following API call structure: `https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={API key}`
-
-As you can see, the value of the query q is the variable city, which comes from our input field. The units used are metric, for which the temperature is expressed in Celsius. Lastly the appid needs to be set with your own API key.
-
-* q: the city name (it can have spaces, like Buenos Aires)
-* units: the units in which the variables are being shown (metric)
-* appid: your API key
-
-Give it a try. For example, using London as the city, your query would look something like this (replace xxxxxx with your API key): `https://api.openweathermap.org/data/2.5/weather?q=London&units=metric&appid=xxxxxx`
-
-When opening this link in a browser, I get this text on screen:
-
-```
-{"coord":{"lon":-0.1257,"lat":51.5085},"weather":[{"id":804,"main":"Clouds","description":"overcast clouds","icon":"04n"}],"base":"stations","main":{"temp":12.35,"feels_like":11.44,"temp_min":10.47,"temp_max":13.86,"pressure":1002,"humidity":69},"visibility":10000,"wind":{"speed":3.6,"deg":280},"clouds":{"all":96},"dt":1664219091,"sys":{"type":2,"id":2075535,"country":"GB","sunrise":1664171560,"sunset":1664214665},"timezone":3600,"id":2643743,"name":"London","cod":200}
-```
-
-This is the "response" given by the server. It is a [JSON](https://www.json.org/json-en.html) formatted data, where different information is shown. We can now use this to get our data. However, if we want to understand this response we can show it in a more readable format.
-
-There is a nice Chrome extension called [JSON Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa/related) that lets you show the JSON in a more human readable form. By using this extension we can see the response like this:
-
-```
-{
-  "coord": {
-    "lon": -0.1257,
-    "lat": 51.5085
-  },
-  "weather": [
-    {
-      "id": 804,
-      "main": "Clouds",
-      "description": "overcast clouds",
-      "icon": "04n"
-    }
-  ],
-  "base": "stations",
-  "main": {
-    "temp": 12.35,
-    "feels_like": 11.44,
-    "temp_min": 10.47,
-    "temp_max": 13.86,
-    "pressure": 1002,
-    "humidity": 69
-  },
-  "visibility": 10000,
-  "wind": {
-    "speed": 3.6,
-    "deg": 280
-  },
-  "clouds": {
-    "all": 96
-  },
-  "dt": 1664219091,
-  "sys": {
-    "type": 2,
-    "id": 2075535,
-    "country": "GB",
-    "sunrise": 1664171560,
-    "sunset": 1664214665
-  },
-  "timezone": 3600,
-  "id": 2643743,
-  "name": "London",
-  "cod": 200
-}    
-```
-
-First thing we should be looking at is the "cod" key, which in this case has a value of 200. This means "OK", the request has succeeded. If you try a city that doesn't exist like "non existing city": `https://api.openweathermap.org/data/2.5/weather?q=non%20existing%20city&units=metric&appid=xxxxxx`, you will get a response that looks like this:
-
-```
-{
-  "cod": "404",
-  "message": "city not found"
+h1 {
+  font-size: 400px;
+  color: #0a11a5; /* blue color for pi */
+  margin: auto;
+  text-align: center;
 }
 ```
 
-In this case the "cod" key returned a value of 404, which means the resource has not been found. The API gives an extra "message" key which helps us better understand what happened: "city not found", as expected.
+The body will have a pink (ish) background color. I also gave the `#container` a margin of 170px from the top.
 
-# Don't expose your API keys
+For the *pi* symbol I changed the font size to make it bigger, gave it a blue color and center it.
 
-Let's start by saving our API key in a safe way. This is useful in case you want to store your code in a public repository and you don't want people to see your private information like this. Make a new file called "local_settings.py" and assign your API key to a variable called *SECRET_KEY* (replace 'xxxxxx' with your actual key).
+![blue Pi symbol with pink background](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/blog/htmlcirculartextpi/picirclingdigits1.jpg)
 
-```
-SECRET_KEY = 'xxxxxx'
-```
+*__Figure 2__. Blue Pi digit with a pink background.*
 
-In your weather.py file import the variable just created:
+# JavaScript
 
-```python
-from local_settings import SECRET_KEY
-```
+Since we are going to make the digits composing the *pi* numbers go around in circles, we will surely need some JavaScript to make it work (or al least seems to be the most straightforward way).
 
-This way you can use your API key through the variable SECRET_KEY without showing it directly in the code. If you are working with a git repository, you may want to add the file local_settings.py in your .gitignore.
+What do we need to get started? First we should have some digits of the pi number. So we can define a Javascript constant using the keyword `const` named PI with the digits stored in a string:
 
-# The url path
-
-Let's move on to construct our url from the variable city entered by the user. Remember we have this url structure to get the data from the API: `https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={API key}`. This url can be broken down into four parts:
-
-* https&#8203;://api.openweathermap.org/data/2.5/weather?q=
-* {city}
-* &units=metric&appid=
-* {API key}
-
-In Python we have to construct our variable `url_path` by adding these four *strings*. Keep in mind that city and API key will be coming from variables:
-
-```python
-url_path = 'https://api.openweathermap.org/data/2.5/weather?q='+city+'&units=metric&appid='+SECRET_KEY
+```cpp
+const PI =
+"3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844609550582231725359408128481117450284102701938521105559644622948954930381964428810975665933446128475648233786783165271201909145648566923460348610454326648213393607260249141273724587006606315588174881520920962829254091715364367892590360011330530548820466521384146951941511609433057270365759591953092186117381932611793105118548074462379962749567351885752724891227938183011949129833673362440656643086021394946395224737190702179860943702770539217176293176752384674818467669405132000568127";
 ```
 
-Now we make a request to this url. Let's import the requests module:
+Next comes the interesting part: how to deal with the positioning and orientation of the digits?
 
-```python
-import requests
+One way of achieving this is to place each one of the digits in a box (`div`). The box will be of rectangular shape, and the digit will be placed on the upper part of it. Each subsequent box will be slightly rotated in clockwise direction.
+
+The following drawing shows the idea:
+
+![Sketch with pi symbol and boxes with digits around](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/blog/htmlcirculartextpi/circlingpi1.jpg)
+
+*__Figure 3__. Sketch idea to make the digits go around in a circle, using boxes (div).*
+
+Let's start making the first box, the one containing the first digit: **3**. Since we will be using JavaScript to dynamically generate all the digits, let's work on a JavaScript file from now on for this.
+
+In an *index.js* file, start defining the box using a `div` element. This element will have its own class named "box" and an inner text `innerHTML` corresponding to each of the digits (in this case the first one, **3**). The first digit will be pulled out of the PI constant previously defined, corresponding to the index 0.
+
+As you can see I have defined the **height** of the `div` in JavaScript instead of using CSS. This is because I will modify the height of each box later, and for this JavaScript is needed.
+
+Finally let's place (append) the box in the "numbers" `div`. The other boxes with its digits will also be placed in this `div`.
+
+```cpp
+var div = document.createElement("div");
+div.className = "box";
+div.innerHTML = PI[0];
+div.style.height = 400 + "px";
+document.getElementById("numbers").appendChild(div);
 ```
 
-Make a get request to the url `url_path` and save the response to a variable called `r` (response). Since we already know the response is in json format, let's convert it to a Python object (dictionary) using the `json()` method and save the result in a variable called `data`:
+Next, let's style the *#numbers* and *.box* `div`.
 
-```python
-r = requests.get(url_path)
-data = r.json()
+Remember that the height was already defined in the *index.js* file. Let's give it absolute positioning, set the width, top, font-size and others. The *transform-origin* is used because this `div` will be rotated, and we need to set the element's base placement on the bottom.
+
+```css
+#numbers {
+  width: 30px;
+  margin: 200px auto;
+}
+
+.box {
+  position: absolute;
+  border: 2px solid #000;
+  display: inline-block;
+  width: 30px;
+  top: 30px;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  transform-origin: bottom;
+} 
 ```
 
-And lastly let's pass this `data` variable as an argument to `render_template`, so we can use it and show in our template:
+![Pi symbol with one number on top](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/blog/htmlcirculartextpi/picirclingdigits2.jpg)
 
-```python
-return render_template(“index.html”, city=city, data=data)
+*__Figure 4__. Adding first number on a box.*
+
+Looking good! Now we should repeat the process, each time rotating the box. Let's give each rotated box an angle of 20 degrees respect to the previous one to see how this looks. I'm going to use three more digits (including the period):
+
+```cpp
+var div = document.createElement("div");
+div.className = "box";
+div.innerHTML = PI[1];
+div.style.transform = "rotate(" + 20 + "deg)";
+div.style.height = 400 + "px";
+document.getElementById("numbers").appendChild(div);
+
+var div = document.createElement("div");
+div.className = "box";
+div.innerHTML = PI[2];
+div.style.transform = "rotate(" + 40 + "deg)";
+div.style.height = 400 + "px";
+document.getElementById("numbers").appendChild(div);
+
+var div = document.createElement("div");
+div.className = "box";
+div.innerHTML = PI[3];
+div.style.transform = "rotate(" + 60 + "deg)";
+div.style.height = 400 + "px";
+document.getElementById("numbers").appendChild(div);
 ```
 
-Finally (I promise we are close) in our html template we show the result in another paragraph tag like this:
+![Pi symbol with 3 numbers and the period around](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/blog/htmlcirculartextpi/picirclingdigits3.jpg)
 
-```html
-<p>{{ data }}</p>
+*__Figure 5__. Adding more numbers rotating the boxes (div).*
+
+Amazing! Now we just have to repeat this for all the digits. We can do this in a loop. I will use the `setTimeout` function because I want to set a delay between each render. Let's set a timeout of 500 ms (0.5 seconds).
+
+```cpp
+var i = 0;
+
+function myLoop() {
+  setTimeout(function () {
+    
+    var div = document.createElement("div");
+    div.className = "box";
+    div.innerHTML = PI[i];
+    div.style.transform = "rotate(" + 20*i + "deg)";
+    div.style.height = 400 + "px";
+    document.getElementById("numbers").appendChild(div);
+    
+    i++;
+    if (i < PI.length) {
+      myLoop();
+    }
+  }, 500);
+}
+
+myLoop();  
 ```
 
-Give it a try. In the input box search for a city called "non existing city". You will get this, since the city does not exist:
+Using a variable *i* we can pick each digit from the *PI* constant. For the rotation we can define the angle based on the value of *i*. We can multiply the 20 degrees with *i*. This way the angle will be 0, 20, 40, 60, etc.
 
-```
-{'cod': '404', 'message': 'city not found'}
-```
+So far it is looking like this:
 
-But if you search for an actual city like "London", you get something like this:
+![Pi symbol with numbers going around in circles](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/blog/htmlcirculartextpi/picirclingdigits4.gif)
 
-```
-{'coord': {'lon': -0.1257, 'lat': 51.5085}, 'weather': [{'id': 804, 'main': 'Clouds', 'description': 'overcast clouds', 'icon': '04n'}], 'base': 'stations', 'main': {'temp': 14.29, 'feels_like': 13.16, 'temp_min': 12.25, 'temp_max': 15.86, 'pressure': 1015, 'humidity': 53}, 'visibility': 10000, 'wind': {'speed': 4.63, 'deg': 280}, 'clouds': {'all': 100}, 'dt': 1664128421, 'sys': {'type': 2, 'id': 2075535, 'country': 'GB', 'sunrise': 1664085064, 'sunset': 1664128404}, 'timezone': 3600, 'id': 2643743, 'name': 'London', 'cod': 200}
-```
+*__Figure 6__. Adding JavaScript loop making the digits appear one at a time, with the help of the setTimeout function.*
 
-Success! There is our json formatted data right in our application interface. All there is left to do is to pick our desired data up from this json, and show just that. Let's do that next.
+We basically got it. There is, however, an overlapping of the numbers after one lap. How to avoid overlapping of the numbers?
 
-# Show specific results: playing with json and Jinja
+One way of solving this issue is to change the height of each box based on the value of *i*. I also included padding based on the value of *i*. The parameters used (in this case the factor 0.3) depends on the size of the box, and the way I found this value to work is by trial and error.
 
-There are a couple different ways to pick specific data from a json structured data. In this blog post I'm going to do this directly in the template, using Jinja syntax.
+Finally I edited the rotation angle on each box to make the numbers get closer together, and set a timeout of 20 ms to make it go faster. The resulting code is this:
 
-As you can see in the json example, the temperature information is part of the "main" key. Let's access it and show it:
+```cpp
+function myLoop() {
+  setTimeout(function () {
+    
+    var div = document.createElement("div");
+    div.className = "box";
+    div.innerHTML = PI[i];
+    div.style.transform = "rotate(" + (i * 360 * 6.5) / PI.length + "deg)";
+    div.style.height = 400 - 0.3*i + "px";
+    div.style.paddingTop = 0.3*i + "px";
+    
+    document.getElementById("numbers").appendChild(div);
+    
+    i++;
+    if (i < PI.length) {
+      myLoop();
+    }
+  }, 20);
+}
 
-```html
-<p>{{ data['main'] }}</p>
-```
-
-If you run the Flask application you will get an error: `jinja2.exceptions.UndefinedError: 'data' is undefined`.
-
-What is happening is that we are trying to access a key from an object that is not yet existing. To avoid getting an error we can make use of an if statement to check if the data is existing or not:
-
-```html
-{% if data %}
-  <p>{{ data['main'] }}</p>
-{% endif %}
-```
-
-This way the 'main' key data is only shown when it is available. If you enter London in the search input you will see something like this:
-
-```
-{'temp': 12.62, 'feels_like': 11.63, 'temp_min': 10.27, 'temp_max': 13.86, 'pressure': 1013, 'humidity': 65}
+myLoop(); 
 ```
 
-Looking promising! Now all we have to do is access each property inside this object. Let's get the temperature 'temp', temperature feeling 'feels_like', 'pressure' and 'humidity'.
+The result looks like this:
 
-```html
-{% if data %}
-  <p>Temperature: {{ data['main']['temp'] }} °C</p>
-  <p>Temperature feeling: {{ data['main']['feels_like'] }} °C</p>
-  <p>Pressure: {{ data['main']['pressure'] }} hPa</p>
-  <p>Humidity: {{ data['main']['humidity'] }} %</p>
-{% endif %}
-```
+![Pi symbol with numbers going around with boxes](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/blog/htmlcirculartextpi/picirclingdigits5.gif)
 
-You can do a lot more with the data, like showing an icon corresponding to the present weather. The app that looks like the image at the beginning of the post can be done using the full code (css styles and images included) from the [GitHub repository](https://github.com/deusdevok/Flask-Weather-App).
+*__Figure 7__. Adding all digits and changing height and padding of the divs to avoid overlapping.*
+
+Beautiful! Let's remove the borders of the boxes. The final thing looks like this:
+
+![digits of pi circling around pi symbol](https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/blog/htmlcirculartextpi/picirclingdigitsfull.gif)
+
+*__Figure 8__. After taking out the border of each of the boxes (divs), the final animation looks like this.*
 
 # Summary
-In this blog post we have gone through the creation of a simple weather app using the Flask framework from Python. The app lets the user enter a city in a search box and the data of the present weather is shown. The data comes from the [openweathermap.org](https://openweathermap.org/) site.
 
-This is an excellent project to practice your Python and Flask skills, and also to show your final project in your portfolio.
+In this article we have gone through a way of making a circular text using HTML, CSS and JavaScript.
+
+The full working code can be seen on this Codepen link:
+
+<iframe height="296.79998779296875" style="width: 100%;" scrolling="no" title="Pi circling digits" src="https://codepen.io/deusdev/embed/ExEYMbr?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/deusdev/pen/ExEYMbr">
+  Pi circling digits</a> by Deus Dev (<a href="https://codepen.io/deusdev">@deusdev</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+You can play around with it, changing colors, parameters and more.
+
+I hope you found this article interesting and insightful. See you next time!
