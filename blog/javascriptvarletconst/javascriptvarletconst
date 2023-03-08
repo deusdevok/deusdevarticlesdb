@@ -1,0 +1,187 @@
+********title
+Javascript: Difference between var, let and const.
+********
+
+********slug
+javascript-var-let-const
+********
+
+********featuredimage
+https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL3BpLTIuanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjo4Mjh9fX0=
+********
+
+Javascript has different ways to declare variables. When you start studying and practicing your firsts Javascripts programs, sometimes things like this can become somewhat confusing.
+
+# Prerequisites
+
+Before continuing with this reading, you need to have a very basic knowledge of Javascript. If you haven't started with Javascript yet, you can read this blog post: a Hello World program in Javascript.
+
+You also need to have a basic understanding of both HTML and CSS.
+
+In this blog post, I will assume you know how to execute a Javascript program. The examples shown here will only contain the Javascript code, without any HTML tags such as script ones.
+
+#Javascript variables
+
+In almost any program (JavaScript or not) there is the need to store data (numbers, strings, objects, etc). Programmers usually store data for later use.
+
+A very common use case of storing data is when there is the need to use it multiple times. When you need to use the same value multiple times, it is very useful to store that value and give it a short, descriptive name.
+
+# Javascript constants
+
+For instance, a Physicist is working on a simulation of the Earth-Sun system and needs to use the Gravitational constant multiple times. The value is 6.674×10-11 m3kg-1s-2. We can use the `const` keyword to define a JavaScript constant:
+
+```js
+const G = 6.674e-11; // m3kg-1s-2
+```
+  
+In this case we use `const` to declare the Gravitational constant, since this value won't ever change (at least in our simulation).
+
+Constants can't be re assigned. If you try something like this, you will get an error:
+
+```js
+const myName = 'Carlos';
+myName = 'Deus Dev';
+
+// ❌ Uncaught TypeError: Assignment to constant variable.
+```
+  
+This makes sense and is useful because if you declare something as being a constant, it shouldn't be possible to change its value.
+
+Constants are useful for anyone reading the code, as they will instantly understand that anything declared with `const` won't ever be changed.
+
+
+JavaScript constants are *block scoped*. This means that if a constant is declared inside a block (inside curly braces {}) it will only be available within that block.
+
+```js
+if (true) {
+  const myName = 'Carlos';
+  console.log(myName); // Carlos
+}
+console.log(myName);   // ❌ Uncaught ReferenceError: myName is not defined 
+```
+  
+What if you do need to be able to change the value of a variable? This is where `var` and `let` comes into play.
+
+# Var
+
+Historically, variables are declared with the `var` keyword. At this point it is clear that this keyword is different than the `const` keyword in the sense that in this case it will be possible to re assign variables (modify their values).
+
+Variables can be declared in two different ways: declaring an empty variable first and then assign it a value, or declare and assign a value on the same line. Let's see an example of how this works:
+
+```js
+var year = 2022;       // declare and initialize on the same line
+
+var city;              // declare empty variable...
+city = 'Buenos Aires'; // and then assign it a value
+```
+  
+What is the **scope** of variables defined with `var`? Where are they available for use? Let's take an example where a variable is defined outside of a function (globally), another inside (local) and another in a block (inside curly braces {}):
+
+```js
+var myGlobal = 'Carlos';
+
+if (true) {
+    var myBlock = 'hi';
+    console.log(myBlock); // hi
+}
+
+function testFunction() {
+    var myLocal = 35;
+    console.log(myGlobal, myBlock, myLocal); // Carlos 35 hi
+}
+
+testFunction();
+
+console.log(myGlobal); // Carlos
+console.log(myBlock);  // hi
+console.log(myLocal);  // ❌ Uncaught ReferenceError: myLocal is not defined
+```
+  
+In this example the variable `myGlobal` is declared and initialized at the begining, outside of the `testFunction` function and the if statement (globally). The variable `myBlock` is declared inside the block corresponding to the if statement (between the curly braces {}). Finally, the variable `myLocal` is declared and initialized inside of the function definition.
+
+With the help of `console.log()` we can check whether the variables are defined. We can see that inside the function all variables are alive, independently of their scope. But when we go outside the function, the variable `myLocal` is no longer available for use (we get an error saying that such a variable is not defined).
+
+
+We then say that variables defined with `var` have function/local scope. This is the case when the variable is declared inside of a function (like `myLocal` in the example).
+
+The other case is when variables are defined globally, outside of the function (like `myGlobal` on this example). Then the scope of such variables are global. They are available anywhere.
+
+What if we re define a variable? No problem, we can do it like this:
+
+```js
+var myName = 'Carlos';
+console.log(myName);     // Carlos
+
+var myName = 'Deus Dev';
+console.log(myName);     // Deus Dev
+```
+  
+Is this a problem? Yes and no. No, because there is no error, and that is always something apparently good! Yes, because if we declare a variable, we should not declare it again (why would we?). We may want to change its value, and that is completely fine. Sometimes we can mistakenly define a new variable with an already existing name. This can cause bugs in our program and they can be hard to debug, specially if the code is large.
+
+# Let
+
+Another way of defining variables in JavaScript is with the use of the keyword `let`. There are a couple of differences with `var`.
+
+Let's see the behavior of variables declared using the `let` keyword with the same example as before.
+
+```js
+let myGlobal = 'Carlos';
+
+if (true) {
+    let myBlock = 'hi';
+    console.log(myBlock);
+}
+
+function testFunction() {
+    let myLocal = 35;
+    console.log(myGlobal, myLocal);
+    console.log(myBlock); // ❌ Uncaught ReferenceError: myBlock is not defined
+}
+
+testFunction();
+
+console.log(myGlobal);
+console.log(myLocal); // ❌ Uncaught ReferenceError: myLocal is not defined
+console.log(myBlock); // ❌ Uncaught ReferenceError: myBlock is not defined
+```
+  
+The case with the global variable `myGlobal` is the same as with the `var` usage. It is available everywhere.
+
+The variable defined inside the if statement (block), named `myBlock`, is available only inside this block. We are trying to access it from inside the `testFunction` and from outside and we get a reference error. This means that variables declared with `let` are available only inside blocks. We say that they have block scope.
+
+Another big difference with `var` is that variables declared using `let` cannot be redeclared. See the example:
+
+```js
+let myName = 'Carlos';
+let myName = 'Deus Dev';
+console.log(myName); // ❌ Uncaught SyntaxError: Identifier 'myName' has already been declared
+```
+  
+When trying to redeclare a variable, we get an error stating that `myName` has already been declared. We can still re assign (update) values to variables like before.
+
+Using `let` is preferred instead of `var` nowadays.
+
+# Summary
+
+Let's make a summary of some of the properties of the `const`, `var` and `let`.
+
+**const**
+
+- Block scope
+- Cannot be redeclared
+- Cannot be re assigned
+- Must be initialized when declared
+
+**var**
+
+- Global and function/local scope
+- Can be redeclared
+- Can be re assigned
+- Can be declared before initializing
+
+**let**
+
+- Block scope
+- Cannot be redeclared
+- Can be re assigned
+- Can be declared before initializing

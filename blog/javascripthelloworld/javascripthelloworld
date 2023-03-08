@@ -1,0 +1,102 @@
+********title
+Getting started with Javascript: a Hello World program.
+********
+
+********slug
+javascript-hello-world
+********
+
+********featuredimage
+https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL3BpLTIuanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjo4Mjh9fX0=
+********
+
+First things first: by the time of writing this post, I am still learning about Javascript. I'm not an expert (yet), and the things you are about to read may not be 100% technically correct.
+
+However, the goal of this post is for you to have an initial idea of what you can do with Javascript, and make your very first program without much effort!
+
+Prerequisites
+Before continuing with this reading, you need to have a very basic knowledge of HTML and maybe some CSS. This is because Javascript will be embeded in an HTML page, which can also have CSS stylings.
+
+If you haven't learn anything about HTML and CSS or you don't know what I'm talking about, I recommend you start at least the very basics. Here is a short list with resources you can start learning from.
+
+HTML
+w3schools
+HTML MDN web docs (mozilla)
+CSS
+w3schools
+CSS MDN web docs (mozilla)
+HTML and CSS
+freeCodeCamp
+HTML and CSS from Jon Duckett
+There are a lot of free and paid resources all over the internet to learn HTML and CSS. These are not hard to learn compared to Javascript, but everything takes time to sink in (at least in my case).
+
+Preparing the code
+Let's start setting up the initial code we will use, which is going to be a very basic HTML website. All we need for now is the html and body tags. Let's add an h1 header with some text so it doesn't feel too empty.
+
+Create a new text file called index.html, and copy the following code.
+
+
+    <html>
+      <body>
+        <h1>My first Javascript !</h1>
+      </body>
+    </html>   
+  
+After saving this HTML code in the index.html file, open it with a web browser like Chrome. You should see a white page with the text you set up in the h1 tag in the upper left corner of the screen (see Figure 1).
+
+My first Javascript !
+Figure 1. My first Javascript text as an h1 tag
+Everything we did is supposed to be well known to you by now. Next we can start jumping into our first Javascript code.
+
+Writing Javascript
+To write Javascript code into our HTML file we need to use the script tag (script tags has to be closed). The actual code will be present between the opening and closing script tags.
+
+Now, where should we include the Javascript code? Is it in the body, or we need to write it in a separate file and then load it? We can do it both ways. Actually we can also put it in the head of the document and it will still work (I haven't included a head in this example to make it more simplified by the way).
+
+
+I won't get into those details in this article. I will use the body to place the code for now. Let's start writing the opening and closing script tags below the title (h1 tag).
+
+
+    <html>
+      <body>
+        <h1>My first Javascript !</h1>
+        <script>
+        </script>  
+      </body>
+    </html>   
+  
+Finally we just need to write the actual code inside the script tags. The idea is to write a hello world program, something that prints the text somewhere using Javascript.
+
+In this article I will use the alert function [1]. When calling this function with a string as parameter, a pop up dialog box will appear on the screen showing the corresponding message.
+
+Write alert('Hello, World!'); between the opening and closing script tags.
+
+
+    <html>
+      <body>
+        <h1>My first Javascript !</h1>
+        <script>
+          alert('Hello, World!');
+        </script>  
+      </body>
+    </html>   
+  
+The text between the parentheses after the alert function has to be enclosed between quotes. This is called a string (strings will be covered in another article).
+
+Save the edited code, and refresh the browser window to see the effect. You should see something similar to the Figure 2.
+
+Javascript hello world
+Figure 2. Hello world text in a pop up window, after using the alert function.
+This window can be closed after clicking the OK button. If you refresh the page, you will see the same pop up window with the message again.
+
+This means the Javascript code is executed each time the page is loaded.
+
+Homework for you
+The very first thing you can try to do is this: after you finish reading this paragraph, minimize this window (don't close it! :)) and open a new text editor. Write the code needed to make your Javascript Hello World just like this article explained. Once you had it working, come back for more.
+You can try changing the message to something different. Try printing a very long message to see the effect on the size of the containing box.
+
+Another thing you can try is to print a second message after the first one to see what happens. You can do this by calling alert on another string. Will two pop up windows appear at the same time? Will the first one appear first, and after clicking OK the second will appear? Give it a try!
+Summary
+This was a first approach to Javascript. There are many details which are not covered in this article (like where to include the script tags). I left those for future blog posts about Javascript.
+
+I hope you find it interesting and useful. See you in another blog post!
