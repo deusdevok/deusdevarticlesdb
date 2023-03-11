@@ -14,6 +14,10 @@ This section of the basic Python course is intended for you to practice what you
 
 ## Rock, paper, scissors game
 
+This section of the basic Python course is intended for you to practice what you have learned so far. There is a lot you can do with what you already learned, and in this short article you are getting a couple of ideas for practice projects. Let’s get started and have fun!
+
+## Rock, paper, scissors game
+
 This is a two player game where each of them randomly chooses between rock, paper or scissors. In this case you can make a user play against the computer. You can read more about this popular game in the [wikipedia article](https://en.wikipedia.org/wiki/Rock_paper_scissors). The basic rules are:
 
 - Rock beats scissors
@@ -72,3 +76,36 @@ The user plays against the computer one game after another as long as the user d
 5. You could keep a score of the game by using a variable `score`, initially being equal to 0. Each game you win adds up one point to the final score. Remember you can increase a variable with `score += 1`.
 
 ## Countdown timer and clock
+
+In this simple project the idea is to prompt the user for a number of seconds and show a countdown timer with minutes and seconds. The total number of seconds will be an integer number.
+
+After running the script you should be looking at something like this:
+
+```
+Enter the time in seconds: 62
+You have entered 62 seconds
+01:02
+01:01
+01:00
+00:59
+00:58
+00:57
+...
+00:03
+00:02
+00:01
+00:00
+Time's up!
+```
+
+First you can print a message stating the number of seconds the user just entered. This can sound silly for a small and simple program like this one, but it can be a good idea for larger projects to show the user what the inputs are as a way to confirm.
+
+Then the countdown begins. In the example above the user entered 62 seconds. That means that the time can be split in 1 minute and 2 seconds. Then, the first line should be something like `01:02` which is the standard format in which a digital clock shows the time. As the time passes, the number of seconds decreases by one, and when the seconds reach zero the number of minutes decreases, at which point the seconds go all the way up to 59.
+
+The program stops when the total number of seconds reaches zero. Then you can show a message indicating that the time is up.
+
+A couple of things to consider when you work on this small project:
+
+1. Use the `input()` function to prompt the user for the total number of seconds. Remember the data type that the `input()` function returns? The `input()` function has been covered in the [functions chapter](https://deusdev.tech/introduction-to-python/introduction-to-python-functions/#the-input-function) of this course. You will need to convert this to an integer for later use.
+2. If you need to compute the number of minutes and seconds from the total number of seconds, you could make use of the integer division and modulus operators. Those topics are covered in the [terminal and python interpreter](https://deusdev.tech/introduction-to-python/introduction-to-python-terminal-interpreter/#operations-with-numbers) article.
+3. You learned about Python modules in a [previous article](https://deusdev.tech/introduction-to-python/introduction-to-python-modules/) from this course. There is a module called [time](https://docs.python.org/3/library/time.html) which you can use in this project to wait for one second between each pass. Specifically, look for the [sleep()](https://docs.python.org/3/library/time.html#time.sleep) method of this module.

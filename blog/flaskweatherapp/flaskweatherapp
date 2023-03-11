@@ -40,6 +40,7 @@ Here is a short list of things you need to know for a better understanding of th
 
 __Python__
 
+* [Basic Python Course from DeusDev (Free)](https://deusdev.tech/introduction-to-python/)
 * [Official Python Site](https://www.python.org/)
 * [w3schools Python tutorial](https://www.w3schools.com/python/)
 * [Matplotlib](https://matplotlib.org/stable/tutorials/index)
@@ -75,9 +76,9 @@ def hello():
 Since we need to render a template named index.html, let's create such a file with the following contents. For simplicity I will show only the code that will be inside the body of the html template. You should include tags like html, head, meta, link, etc.
 
 ```html
-<div>
-  <p>Hello man !</p>
-</div>
+&lt;div>
+  &lt;p>Hello man !&lt;/p>
+&lt;/div>
 ```
 
 Remember that templates have to be placed in a folder called "templates" for flask to be able to find them.
@@ -99,28 +100,28 @@ We need to be able to input text somehow. This can be achieved through a form el
 In the "index.html" file make a form element and give it a method equal to POST. This way when you click the submit button, a request is made with a POST method and the input values can be later be accessed in our python file.
 
 ```html
-<form method="post">
-  <input name="city" type="text">
-  <button type="submit">Search</button>
-</form>
+&lt;form method="post">
+  &lt;input name="city" type="text">
+  &lt;button type="submit">Search&lt;/button>
+&lt;/form>
 ```
 
 By using a POST method we will be able to collect the input values using requests like this:
 
 ```html
-<form method="post">
-  <input name="city" type="text" value="{{ request.form['city'] }}">
-  <button type="submit">Search</button>
-</form>  
+&lt;form method="post">
+  &lt;input name="city" type="text" value="{{ request.form['city'] }}">
+  &lt;button type="submit">Search&lt;/button>
+&lt;/form>  
 ```
 
 With this addition, entering a string value in the input field and pressing Search will make the value sent over a request. The idea is to pick this value up in our Python code for further use. To do that we need to call a function which I will name get_weather using the action property in the form element:
 
 ```html
-<form method="post" action="{{ url_for('get_weather') }}">
-  <input name="city" type="text" value="{{ request.form['city'] }}">
-  <button type="submit">Search</button>
-</form>
+&lt;form method="post" action="{{ url_for('get_weather') }}">
+  &lt;input name="city" type="text" value="{{ request.form['city'] }}">
+  &lt;button type="submit">Search&lt;/button>
+&lt;/form>
 ```
 
 The function get_weather needs to be decorated with @app.route("/city") and allowing methods GET and POST (using only POST will also work, but is good practice to allow both GET and POST). I have set the route for this to be "/city".
@@ -143,16 +144,16 @@ Next we show the index.html template by using the render_template function, and 
 In the html template now we can make use of the variable city using Jinja syntax, placing it inside double curly braces. This is because render_template was called with a second argument where the new variable city was set.
 
 ```html
-<div>
-  <h1>Weather app !</h1>
+&lt;div>
+  &lt;h1>Weather app !&lt;/h1>
 
-  <form method="post" action="{{ url_for('get_weather') }}">
-    <input name="city" type="text" value="{{ request.form['city'] }}">
-    <button type="submit">Search</button>
-  </form>
+  &lt;form method="post" action="{{ url_for('get_weather') }}">
+    &lt;input name="city" type="text" value="{{ request.form['city'] }}">
+    &lt;button type="submit">Search&lt;/button>
+  &lt;/form>
 
-  <p>You have entered: {{ city }}</p>
-</div>
+  &lt;p>You have entered: {{ city }}&lt;/p>
+&lt;/div>
 ```
 
 I also changed the "Hello man" text to an h1 tag with the text "Weather app !". Next the form is shown and finally a paragraph showing the input value next to the text "You have entered:".
@@ -297,7 +298,7 @@ return render_template(“index.html”, city=city, data=data)
 Finally (I promise we are close) in our html template we show the result in another paragraph tag like this:
 
 ```html
-<p>{{ data }}</p>
+&lt;p>{{ data }}&lt;/p>
 ```
 
 Give it a try. In the input box search for a city called "non existing city". You will get this, since the city does not exist:
@@ -321,7 +322,7 @@ There are a couple different ways to pick specific data from a json structured d
 As you can see in the json example, the temperature information is part of the "main" key. Let's access it and show it:
 
 ```html
-<p>{{ data['main'] }}</p>
+&lt;p>{{ data['main'] }}&lt;/p>
 ```
 
 If you run the Flask application you will get an error: `jinja2.exceptions.UndefinedError: 'data' is undefined`.
@@ -330,7 +331,7 @@ What is happening is that we are trying to access a key from an object that is n
 
 ```html
 {% if data %}
-  <p>{{ data['main'] }}</p>
+  &lt;p>{{ data['main'] }}&lt;/p>
 {% endif %}
 ```
 
@@ -344,10 +345,10 @@ Looking promising! Now all we have to do is access each property inside this obj
 
 ```html
 {% if data %}
-  <p>Temperature: {{ data['main']['temp'] }} °C</p>
-  <p>Temperature feeling: {{ data['main']['feels_like'] }} °C</p>
-  <p>Pressure: {{ data['main']['pressure'] }} hPa</p>
-  <p>Humidity: {{ data['main']['humidity'] }} %</p>
+  &lt;p>Temperature: {{ data['main']['temp'] }} °C&lt;/p>
+  &lt;p>Temperature feeling: {{ data['main']['feels_like'] }} °C&lt;/p>
+  &lt;p>Pressure: {{ data['main']['pressure'] }} hPa&lt;/p>
+  &lt;p>Humidity: {{ data['main']['humidity'] }} %&lt;/p>
 {% endif %}
 ```
 
