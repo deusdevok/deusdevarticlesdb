@@ -4,7 +4,7 @@ a {
 
 .presentation {
     background-color: #ffffff;
-    background: url('/static/img/main-header.jpg');
+    background: url('https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/main-header.jpg');
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
