@@ -1,0 +1,252 @@
+********title
+Build a Weather App Using Django and the openweathermap API
+********
+
+********slug
+django-weather-app
+********
+
+********featuredimage
+https://img.freepik.com/premium-photo/dark-storm-clouds-wide-panorama-space-dark-strip-forest-concept-space_522979-153.jpg?w=1380
+********
+
+Django is a powerful and popular web framework that allows you to quickly create web applications. In this article, you will learn how to create a simple weather app using Django. You will also use the OpenWeatherMap API to get the real weather information from a specific location and display it on the web app. Let’s get started!
+
+## Prerequisites
+
+Before continuing with this reading, you need to have a basic knowledge of at least Python, Django and some HTML.
+
+Here is a short list of links with information on each topic. Make sure you check them out, review and practice anything you need for this project.
+
+**Python**
+
+- [Official Python Site](https://www.python.org/)
+- [w3schools Python tutorial](https://www.w3schools.com/python/)
+- [Basic Python Course from DeusDev (Free)](https://deusdev.click/introduction-to-python/)
+
+**Django**
+
+- [Official Django website](https://www.djangoproject.com/)
+
+**HTML**
+
+- [w3schools](https://www.w3schools.com/html/default.asp)
+- [HTML MDN web docs (mozilla)](https://developer.mozilla.org/en-US/docs/Learn/HTML)
+
+## Setting Up the Project
+
+Let’s get started by creating a new Django project. It is common and good practice to work with virtual environments, especially if the project is intended to be hosted online.
+
+### Creating a new virtual environment
+
+There are various ways to create a virtual environment. Open a terminal (for example the Windows Powershell) and run the following command:
+
+```
+python -m venv env
+```
+
+This will create a new virtual environment called `env`. The purpose of this virtual environment is to keep all the dependencies of this particular project there. All the dependencies will later be placed in a *requirements.txt* file. Next, activate the virtual environment:
+
+```
+PS C:\djangoweatherapp> .\env\Scripts\Activate.ps1
+(env) PS C:\djangoweatherapp>
+```
+
+If you are on Windows, you will know that the virtual environment is activated by looking at an `(env)` indicator on the left.
+
+You can read more about virtual environments in this [great article](https://www.freecodecamp.org/news/how-to-setup-virtual-environments-in-python/) from freecodecamp.
+
+### Starting the Django project
+
+Now that you have a new virtual environment and activated it, let’s install Django in it:
+
+```
+pip install django
+```
+
+This will install the latest version of Django in your virtual environment. Keep in mind that [Django 4](https://pypi.org/project/Django/4.0/) requires Python version 3.8 at least.
+
+Use the `pip freeze` command to check what is installed in the virtual environment:
+
+```
+(env) PS C:\djangoweatherapp> pip freeze
+asgiref==3.6.0
+Django==4.1.7
+sqlparse==0.4.3
+tzdata==2022.7
+```
+
+As you can see the Django version installed at the time of writing this article is Django 4.1.7.
+
+You can do a `pip freeze` to create a new *requirements.txt* file with all the dependencies. This is useful when you deploy your applications to the cloud:
+
+```
+pip freeze > requirements.txt
+```
+
+Remember to repeat this command each time you install a new package so the *requirements.txt* file is updated. Next, let’s create a new Django project with the name `weatherapp` or something similar:
+
+```
+django-admin startproject weatherapp
+```
+
+This will create a new directory called `weatherapp` with the basic structure of a Django project. Use `cd weatherapp` to go to the newly created directory:
+
+```
+(env) PS C:\djangoweatherapp> cd weatherapp   
+(env) PS C:\djangoweatherapp\weatherapp>
+```
+
+To see the tree structure of your directory, you can use the `tree /f` command on Windows:
+
+```
+(env) PS C:\djangoweatherapp\weatherapp> tree /f
+C:.
+│   manage.py
+│   
+└───weatherapp
+        asgi.py
+        settings.py
+        urls.py
+        wsgi.py
+        __init__.py
+```
+
+Next, you need to create a new Django app within the project. Once inside the project directory `weatherapp`, create the new app with the `startapp` command:
+
+```
+python manage.py startapp weather
+```
+
+This will create a new directory called `weather` inside our `weatherapp` project directory. If you run `tree /f` again you will get something like the following:
+
+```
+C:.
+│   manage.py
+│   
+├───weather
+│   │   admin.py
+│   │   apps.py
+│   │   models.py
+│   │   tests.py
+│   │   views.py
+│   │   __init__.py
+│   │   
+│   └───migrations
+│           __init__.py
+│
+└───weatherapp
+    │   asgi.py
+    │   settings.py
+    │   urls.py
+    │   wsgi.py
+    │   __init__.py
+    │   
+    └───__pycache__
+            settings.cpython-311.pyc
+            __init__.cpython-311.pyc
+```
+
+## Connecting to the OpenWeatherMap API
+
+Before we can start displaying weather information on our app, we need to connect to the OpenWeatherMap API. You will need to sign up for a free API key at [https://openweathermap.org/api](https://openweathermap.org/api).
+
+Once you have your API key, create a new file called `api_key.py` inside the `weather` app directory. Add the following line to the file:
+
+```
+API_KEY = 'your_api_key_here'
+```
+
+Replace `your_api_key_here` with the API key you obtained from the OpenWeatherMap website. It is good practice to keep your secret keys in a separated file instead of placing them in, for instance, the `settings.py` file.
+
+Next, create a new file called `views.py` inside the `weather` app directory. Add the following code to the file:
+
+```python
+# views.py
+
+import requests
+from django.shortcuts import render
+from .api_key import API_KEY
+
+def home(request):
+    url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid={}'
+    city = 'New York'
+    r = requests.get(url.format(city, API_KEY)).json()
+    weather = {
+        'city': city,
+        'temperature': r['main']['temp'],
+        'description': r['weather'][0]['description'],
+        'icon': r['weather'][0]['icon'],
+    }
+    context = {'weather': weather}
+    return render(request, 'weather/home.html', context)
+```
+
+This code uses the `requests` library to make a GET request to the OpenWeatherMap API. You may need to install it first:
+
+```
+pip install requests
+```
+
+It then extracts the relevant weather information and stores it in a dictionary called `weather`. Finally, it renders the `home.html` template with the `weather` dictionary as context.
+
+Update the `settings.py` file so the weather app is included in the project. Add the weather app to the `INSTALLED_APPS` list:
+
+```python
+# settings.py
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'weather',
+]
+```
+
+Another important step is to make Django know how to connect the template with a url. Open the `url.py` file located at the `weatherapp` folder (the same where the `settings.py` file is located).
+
+```python
+# urls.py
+
+from django.contrib import admin
+from django.urls import path
+from weather import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', views.home, name='home'), # add this
+]
+```
+
+## Displaying the Weather Information
+
+Now that we have the weather information, we need to display it on our app. Create a new directory called `templates` inside the `weather` app directory. Inside the `templates` directory, create yet another directory called `weather` (as the app), and inside it create a new file called `home.html`.
+
+In short, you will end up with a `home.html` file in the `weather/templates/weather` directory. Add the following code to the HTML file:
+
+```
+&lt;!DOCTYPE html>
+&lt;html lang="en">
+  &lt;head>
+    &lt;meta charset="UTF-8">
+    &lt;title>Weather App&lt;/title>
+  &lt;/head>
+  &lt;body>
+    &lt;h1>{{ weather.city }}&lt;/h1>
+    &lt;h2>{{ weather.temperature }}&deg;C&lt;/h2>
+    &lt;p>{{ weather.description }}&lt;/p>
+    &lt;img src="http://openweathermap.org/img/w/{{ weather.icon }}.png">
+  &lt;/body>
+&lt;/html>
+```
+
+This code uses Django's template language to display the weather information. It displays the city name, temperature, weather description, and weather icon.
+
+## Conclusion
+
+Congratulations! You have just built your own weather app using Django and the OpenWeatherMap API. Of course, this is just a starting point. You can customize the app to display more weather information, add more cities, add custom styles and more.
+
+I hope this has been helpful, and have fun working with this app!
