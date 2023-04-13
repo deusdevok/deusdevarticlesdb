@@ -1,0 +1,262 @@
+********title
+How to make Streamplots with Python Matplotlib
+********
+
+********slug
+python-matplotlib-streamplots
+********
+
+********featuredimage
+https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/blog/flaskweatherapp/dark-storm-clouds-wide-panorama.jpg
+********
+
+Matplotlib is a great Python library that lets you make amazing plots to visualize your data. In this article you are going to see how to make beautiful **streamplots** using the matplotlib library. Let’s get started.
+
+## What is a streamplot?
+
+As stated in the [official matplotlib streamplot documentation](https://matplotlib.org/stable/gallery/images_contours_and_fields/plot_streamplot.html), *a stream plot, or streamline plot, is used to display 2D vector fields*. As you will see later in this article, this kind of plots are ideal to work with data representing [vector fields](https://en.wikipedia.org/wiki/Vector_field), for example velocity, electric and magnetic fields, gravitational fields, and more.
+
+The goal of the present article is to go through the basics of streamplots with Python’s matplotlib library, and how you can customize them.
+
+> Are you still learning Python? If you are new to Python and feel you still need to learn the basics, go ahead and try our [free Python Introductory Course](https://deusdev.click/introduction-to-python/). You will learn all you need to know and also practice with a lot of available exercises.
+> 
+
+## Installing matplotlib
+
+The first step before moving on is to install the Python matplotlib library. Go ahead and install it using `pip`, if you haven’t already.
+
+```python
+pip install matplotlib
+```
+
+You can find more information on [how to install Python matplotlib library](https://matplotlib.org/stable/users/installing/index.html) in the official documentation.
+
+### Check that matplotlib is installed
+
+Next, check your installation by running the following in a Python interpreter. If everything goes well, it means that matplotlib was successfully installed.
+
+```python
+import matplotlib
+```
+
+If you get an error it means that something went wrong with the installation:
+
+```
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ModuleNotFoundError: No module named 'matplotlib'
+```
+
+In that case you could try another way to install the matplotlib library. Make sure the installation goes through.
+
+### Importing the matplotlib pyplot library
+
+In this article you are going to make use of the [matplotlib pyplot](https://matplotlib.org/3.5.3/api/_as_gen/matplotlib.pyplot.html) submodule, in which the streamplot method is present. Let’s import that and use a shorthand name as plt, which is the most common way to import this library.
+
+```python
+import matplotlib.pyplot as plt
+```
+
+You will also need [numpy](https://numpy.org/) to create the data in the examples:
+
+```python
+import numpy as np
+```
+
+Now you are ready to get started!
+
+## Streamplots with different options
+
+### A basic streamplot
+
+The first example is going to be a very basic streamplot, consisting of a set of horizontal lines along the *x-axis*, with arrows pointing to the right indicating the direction of the *flow*.
+
+For this example you need to use the numpy module to create the data points, and also to make a mesh grid. The other module you need to import is matplotlib, from which the streamplot is coming from.
+
+Let’s make use of the `arange` function from the `numpy` module to create `x` and `y` arrays. After creating both arrays, use the `meshgrid` function to create the grid, and assign the result to `X` and `Y`. Make sure to use different names for the mesh variables to avoid conflicts (sometimes this isn’t strictly necessary, but is a good practice to use different variable names).
+
+The streamplot needs to know the velocities in each direction, which you can call `u` (x velocity) and `v` (y velocity). Each of these have to be 2D arrays, with the same number of rows and columns as `X` and `Y` respectively.
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+ 
+# Create data
+x = np.arange(0, 5) # from 0 to 4 included
+y = np.arange(0, 5)
+ 
+# Make the grid
+X, Y = np.meshgrid(x, y)
+ 
+# x-component to the right
+u = np.ones((5, 5))
+ 
+# y-component equal to zero
+v = np.zeros((5, 5))
+ 
+fig = plt.figure(figsize = (12, 8))
+ 
+# Stream plot
+plt.streamplot(X, Y, u, v)
+
+plt.show()
+```
+
+Note that the `streamplot()` function is used with four parameters: `X` and `Y` for the meshgrid points, and `u` and `v` for the velocities. After running the code you will obtain the following streamplot:
+
+![1.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7cf2ec99-4d6d-47d1-8645-fe03abd4fc9c/1.png)
+
+### Changing the density of the lines
+
+You can change the *density* of the lines, that is the number of lines in a given area. To do this, use the `density` parameter (the default value is 1). Smaller values will decrease the number of lines, while higher values will increase it.
+
+```python
+plt.streamplot(X, Y, u, v, density=0.5)
+```
+
+![2.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fc6f6fc2-2b21-4e7b-b923-4142ca3b7022/2.png)
+
+As you can see, there are a less amount of lines, which makes them more separated between each other.
+
+### Changing the color of the lines
+
+You can also change the coloring of the lines with the `color` parameter. The parameter `color` can be an array, in which case it must have the same shape as `u` and `v`, and the colors are converted using `cmap` ([colormaps](https://matplotlib.org/stable/tutorials/colors/colormaps.html)).
+
+```python
+plt.streamplot(X, Y, u, v, density=0.5, color=X, cmap='autumn')
+```
+
+![3-1.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7058ff4b-7665-450d-8064-e2bfa762d6de/3-1.png)
+
+> **How to set the matplotlib color?** There are a lot of ways to set [matplotlib colors](https://matplotlib.org/stable/api/colors_api.html) for your plots. If you want to set a single color for the entire plot, you can use the single character shorthand notation like  `color='r'` for a red color. You can also set the color with hex RGB values like `'color='#0f0f0f'` . Other formats are available. You may want to read the [official matplotlib documentation](https://matplotlib.org/stable/tutorials/colors/colors.html#sphx-glr-tutorials-colors-colors-py) on how to set fixed colors. If you are looking to set the coloring using colormaps like in this tutorial, [follow this](https://matplotlib.org/stable/tutorials/colors/colormaps.html) link instead for more information.
+> 
+
+### Changing the linewidth
+
+Another parameter you can modify in your streamplots is the *linewidth*. By setting a single value for the linewidth parameter (for example 3) all the lines will be thicker, but with the same width.
+
+The linewidth, on the other hand, can be set as a 2D array. This way you can control the linewidth for specific points of your plot. Here is the same example where the linewidth increases with the `Y` mesh variable.
+
+```python
+plt.streamplot(X, Y, u, v, density=0.5, color=X, cmap='autumn', linewidth=Y/2)
+```
+
+![changelw.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ec104115-ba20-4888-a1c3-f33d10d0cbb2/changelw.png)
+
+There are other features like controlling starting points and masking for your streamplots. You can check the [official matplotlib documentation](https://matplotlib.org/stable/gallery/images_contours_and_fields/plot_streamplot.html) to see the examples.
+
+## Custom functions
+
+A very interesting thing to do with streamplots is to use more complex functions. The examples treated so far were made in a very simplistic way in order to show the different parameters you can play with.
+
+But streamplots are meant to be used to visualize complex data flows. Say for example that the velocity field is such that the `U` (horizontal) component is related to the `Y` component squared, that is `U=Y**2`. And the `V` (vertical) component is equal to `X` squared, `V=X**2`. 
+
+Try it out and see the result.
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+ 
+X, Y = np.meshgrid(np.arange(-3, 3, 0.1), np.arange(-3, 3, 0.1))
+
+U = Y**2
+V = X**2
+ 
+fig = plt.figure(figsize = (8, 8))
+plt.streamplot(X, Y, U, V)
+ 
+plt.show()
+```
+
+![4.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b45405e2-2113-42c0-8504-80b517bcc535/4.png)
+
+An interesting pattern emerges! The streamlines make curved paths going in the north-east direction. The streamlines appear broken at some points. In order to avoid this behaviour you can use `broken_streamlines=False`. I also reduced the density of the lines for the next example.
+
+```python
+plt.streamplot(X, Y, U, V, density=0.2, broken_streamlines=False)
+```
+
+![5.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2d2b54ff-6b3d-406e-b0bf-b5a3d8549c50/5.png)
+
+Here is another example where the horizontal component of the velocity is set to `U=Y`, and the V component is set to a more complex function using trigonometric functions (cosine):
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+ 
+X, Y = np.meshgrid(np.arange(-2.5, 2.5, 0.05), np.arange(-2.5, 2.5, 0.05))
+
+U = Y
+V = X - X**3 - 0.3*Y + 0.5*np.cos(1.25*X)
+ 
+fig = plt.figure(figsize = (8, 6))
+plt.streamplot(X, Y, U, V, density=0.4, broken_streamlines=False, color=U)
+plt.grid()
+
+plt.show()
+```
+
+![circlestwo.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/40ca8230-79e2-499b-afe9-708148eca57a/circlestwo.png)
+
+Finally, the last example is one where the electric field between two electric charges (one positive and one negative) is shown.
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+ 
+# Function to determine the electric field
+def E(q, r0, x, y):
+    den = np.hypot(x-r0[0], y-r0[1])**3
+    return q * (x - r0[0]) / den, q * (y - r0[1]) / den
+ 
+# Grid of x, y points
+n = 100
+x = np.linspace(-2, 2, n)
+y = np.linspace(-2, 2, n)
+X, Y = np.meshgrid(x, y)
+
+charges = [(-1, (1, 0)), (1, (-1, 0))]
+ 
+# Electric field vector
+Ex, Ey = np.zeros((n, n)), np.zeros((n, n))
+ 
+for charge in charges:
+    ex, ey = E(*charge, x = X, y = Y)
+    Ex += ex
+    Ey += ey
+ 
+fig = plt.figure(figsize =(18, 8))
+ax = fig.add_subplot(111)
+
+color = -X # coloring according to X values
+str = ax.streamplot(x, y, Ex, Ey, color = color,
+              linewidth = 1, cmap = plt.cm.brg,
+              density = .3, arrowstyle ='->',
+              arrowsize = 1.5, broken_streamlines=False)
+
+fig.colorbar(str.lines)
+
+# Add filled circles for the charges
+q_colors = {True: '#0000AA', False: '#AA0000'}
+ 
+for q, pos in charges:
+    # zorder makes the circles show on top of the lines
+    circle = plt.Circle(pos, 0.2, color=q_colors[q>0], zorder=2)
+    ax.add_patch(circle)
+ 
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_xlim(-2, 2)
+ax.set_ylim(-2, 2)
+ax.set_aspect('equal')
+
+plt.show()
+```
+
+![electricfield.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7a2a8a52-59db-4c59-b526-f5c8f5839038/electricfield.png)
+
+As you can see from the above example, the streamplots can be as complex as you can imagine, and the results can be very appealing.
+
+## Summary
+
+In this article you learned about matplotlib streamplots. Streamplots are ideal to visualize flow like data, for example velocities or electric fields.
