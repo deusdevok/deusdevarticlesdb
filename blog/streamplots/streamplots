@@ -7,7 +7,7 @@ python-matplotlib-streamplots
 ********
 
 ********featuredimage
-https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/blog/flaskweatherapp/dark-storm-clouds-wide-panorama.jpg
+https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/blog/streamplots/circlestwo.avif
 ********
 
 Matplotlib is a great Python library that lets you make amazing plots to visualize your data. In this article you are going to see how to make beautiful **streamplots** using the matplotlib library. Let’s get started.
