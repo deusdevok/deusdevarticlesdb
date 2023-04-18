@@ -5,9 +5,13 @@ date: "17 April 2023"
 output: pdf_document
 ---
 
-# Table Of Contents
+<link rel="stylesheet" href="markdown.css" type="text/css">
 
-- [Table Of Contents](#table-of-contents)
+<p style='font-size: 30px;'>Table Of Contents</p>
+
+<hr>
+
+- [Introduction](#introduction)
 - [Chapter 1: Installation \& Setup](#chapter-1-installation--setup)
   - [Step 1: Download the Python installer](#step-1-download-the-python-installer)
   - [Step 2: Run the exe file](#step-2-run-the-exe-file)
@@ -187,7 +191,39 @@ output: pdf_document
 - [Chapter 13: Practice Projects](#chapter-13-practice-projects)
   - [Rock, paper, scissors game](#rock-paper-scissors-game)
   - [Countdown timer and clock](#countdown-timer-and-clock)
+- [Thank you for reading](#thank-you-for-reading)
 
+
+<div style="page-break-after: always;"></div>
+
+# Introduction
+
+Welcome to *Pyntroduction to Python*: a Python basic course. Here you will learn the very basics of this popular programming language. At the end of it, you will be able to make and run your own Python programs. There is a couple of practice projects at the end of the course that are intended for you to apply what you have learned.
+
+**What is Python?**
+
+Python is a programming language designed by Guido van Rossum. Its first version was released in 1991, and it didn't stop evolving since then. At the time of writing this course, the latest Python version is 3.11.2. Keep in mind that when you read this there is a high chance that a newer version of Python is already available.
+
+One of the most remarkable aspects of Python is its human-readable syntax. Unlike other popular programming languages like Java or C, Python is easier to learn and the process of writing programs is less cumbersome.
+
+Another important aspect of Python is that it is free and open source. There is also a great and big community, and you can ask for help in many portals over the internet.
+
+**What is Python used for?**
+
+Python has many different use cases. Here is a short list of popular topics Python is mostly used for:
+
+- Data Analysis
+- Data Visualization
+- Software Development
+- Machine Learning
+- Web Development
+- Process Automation
+
+**What will I learn in this course?**
+
+In this course you will learn the basics of Python, starting from the installation, running your first scripts, working with data types, and finishing with real practice projects. Keep in mind that this course doesn't include advanced topics such as data visualization, web development or machine learning.
+
+The course is intended for you to learn the basic building blocks of Python. If you learn and practice the topics covered in this course, you will be able to move forward and learn more advanced techniques easily.
 
 <div style="page-break-after: always;"></div>
 
@@ -3773,3 +3809,27 @@ A couple of things to consider when you work on this small project:
 1. Use the `input()` function to prompt the user for the total number of seconds. Remember what is the data type that the `input()` function returns? The `input()` function has been covered in the [functions chapter](#the-input-function) of this course. You will need to convert this to an integer number for later use.
 2. If you need to compute the number of minutes and seconds from the total number of seconds, you could make use of the integer division and modulus operators. These topics were covered in the [terminal and python interpreter](#operations-with-numbers) article.
 3. You learned about Python modules in a [previous article](#chapter-12-modules) from this course. There is a module called [time](https://docs.python.org/3/library/time.html) which you can use in this project to wait for one second between each pass. Specifically, look for the [sleep()](https://docs.python.org/3/library/time.html#time.sleep) method of this module.
+
+<div style="page-break-after: always;"></div>
+
+# Thank you for reading
+
+You have reached the end of the book! I want to congratulate you for taking the time to read it, and I really hope you have learned and enjoy the journey. You have made the very first step into learning this amazing programming language.
+
+This is the first edition of my first eBook. I'm sure there are tons of errors and typos in this edition. If you want to point out any one of them, feel free to contact me via Twitter at @deusdevok. You can also contact me via the website following [this link](https://deusdev.click/about/#contact), where you can fill out a form with your message. I will appretiate your feedback.
+
+My goal is to continue writing more content and publishing new eBooks in the future. You can also contact me if you have any preferences about which topics you would like to learn.
+
+**Continue learning**
+
+I encourage you to keep learning Python if you enjoyed what you have learned so far. The topics covered in this book are just the tip of the iceberg.
+
+You can find more content on my website, [DeusDev.click](https://deusdev.click). You can also look for more content on the web. You will find excellent content creators, either in blogs and in Youtube. You will find both free and paid content.
+
+One of the most important things you can do to make your knowledge stronger is to practice everything you learn. Only reading or watching videos is not enough. You must get you hands dirty if you really want to learn the topics.
+
+Most importantly, have fun and be patient. Learning programming takes time, but is much rewarding.
+
+See you next time!
+
+— **Carlos**
