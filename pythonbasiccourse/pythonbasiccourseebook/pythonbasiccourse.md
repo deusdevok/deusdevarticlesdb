@@ -7,6 +7,10 @@ output: pdf_document
 
 <link rel="stylesheet" href="markdown.css" type="text/css">
 
+<img src='pythonebookcover.png' id='coverimg' />
+
+<div style="page-break-after: always;"></div>
+
 <p style='font-size: 30px;'>Table Of Contents</p>
 
 <hr>

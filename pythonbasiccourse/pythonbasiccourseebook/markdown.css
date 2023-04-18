@@ -23,3 +23,10 @@ table {
     margin-left: auto;
     margin-right: auto;
 }
+
+#coverimg {
+    margin-left: -4%;
+    width: 260%;
+    height: 260%;
+    z-index: 9999;
+}
