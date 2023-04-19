@@ -1,13 +1,7 @@
----
-title: "Python Basic Course For You"
-author: "DeusDev"
-date: "17 April 2023"
-output: pdf_document
----
 
 <link rel="stylesheet" href="markdown.css" type="text/css">
 
-<img src='pythonebookcover.png' id='coverimg' />
+<img src='pythonebookcover2.png' id='coverimg' />
 
 <div style="page-break-after: always;"></div>
 

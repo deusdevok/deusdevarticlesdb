@@ -4,7 +4,7 @@ p, li, ul, code {
 }
 
 img {
-    display: block;
+    /*display: block;*/
     margin-left: auto;
     margin-right: auto;
 }
@@ -25,8 +25,11 @@ table {
 }
 
 #coverimg {
-    margin-left: -4%;
-    width: 260%;
-    height: 260%;
-    z-index: 9999;
+    /*height: 95vh !important;*/
+    width: 100vw;
+    display: block;
+    margin-left: -20px;
+    margin-right: auto;
+    padding: 0;
+    z-index: 1000;
 }
