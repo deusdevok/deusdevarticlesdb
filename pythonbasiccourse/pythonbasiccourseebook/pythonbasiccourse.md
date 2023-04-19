@@ -1,7 +1,7 @@
 
 <link rel="stylesheet" href="markdown.css" type="text/css">
 
-<img src='https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythonbasiccourseebook/pythonebookcover2.png' id='coverimg' />
+<img src='https://raw.githubusercontent.com/deusdevok/deusdevarticlesdb/main/pythonbasiccourse/pythonbasiccourseebook/pythonebookcover3.png' id='coverimg' />
 
 <div style="page-break-after: always;"></div>
 
